@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      Stackly
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta is-active">Login</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main>
+  <section class="auth">
+    <div class="auth__inner">
+
+      <!-- ============ VISUAL SIDE ============ -->
+      <div class="auth__visual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80" alt="">
+        <div class="auth__visual-copy">
+          <div class="stack__block" style="--c:var(--teal)"><i class="fa-solid fa-house"></i><span>Home — active</span></div>
+          <div class="stack__block" style="--c:var(--amber)"><i class="fa-solid fa-car"></i><span>Auto — active</span></div>
+          <h2>Your whole stack, one login away.</h2>
+          <p>Check coverage, file a claim, or add a layer — all from the account you're about to sign into.</p>
+        </div>
+      </div>
+
+      <!-- ============ FORM SIDE ============ -->
+      <div class="auth__form-wrap">
+        <div class="auth__form">
+          <a href="./index.html" class="auth__logo">
+            <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            Stackly
+          </a>
+
+          <div class="auth__tabs">
+            <button class="auth__tab is-active" data-panel="panelLogin">Log in</button>
+            <button class="auth__tab" data-panel="panelSignup">Sign up</button>
+          </div>
+
+          <!-- LOGIN PANEL -->
+          <div class="auth__panel is-active" id="panelLogin">
+            <h1>Welcome back.</h1>
+            <p>Log in to check your stack, file a claim, or update a policy.</p>
+
+            <form novalidate>
+              <div class="auth__field">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" placeholder="Email address" required autocomplete="email">
+              </div>
+              <div class="auth__field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Password" required autocomplete="current-password">
+                <button type="button" class="auth__field-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+              </div>
+              <div class="auth__row">
+                <label class="auth__remember"><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn--primary">Log in</button>
+            </form>
+
+            <div class="auth__divider">or continue with</div>
+            <div class="auth__social">
+              <button type="button"><i class="fa-brands fa-google"></i> Google</button>
+              <button type="button"><i class="fa-brands fa-apple"></i> Apple</button>
+            </div>
+            <p class="auth__foot">New to Stackly? <a href="#" data-jump="panelSignup">Create an account</a></p>
+          </div>
+
+          <!-- SIGNUP PANEL -->
+          <div class="auth__panel" id="panelSignup">
+            <h1>Build your stack.</h1>
+            <p>Create an account and get a quote in under nine minutes.</p>
+
+            <form novalidate>
+              <div class="auth__field">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" placeholder="Full name" required autocomplete="name">
+              </div>
+              <div class="auth__field">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" placeholder="Email address" required autocomplete="email">
+              </div>
+              <div class="auth__field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Create password" required autocomplete="new-password">
+                <button type="button" class="auth__field-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+              </div>
+              <div class="auth__row">
+                <label class="auth__remember"><input type="checkbox" required> I agree to the terms &amp; privacy policy</label>
+              </div>
+              <button type="submit" class="btn btn--primary">Create account</button>
+            </form>
+
+            <div class="auth__divider">or continue with</div>
+            <div class="auth__social">
+              <button type="button"><i class="fa-brands fa-google"></i> Google</button>
+              <button type="button"><i class="fa-brands fa-apple"></i> Apple</button>
+            </div>
+            <p class="auth__foot">Already stacked? <a href="#" data-jump="panelLogin">Log in</a></p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+<script>
+  // Allow the inline "Create an account" / "Log in" links to jump tabs too.
+  document.querySelectorAll('[data-jump]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var targetId = link.getAttribute('data-jump');
+      document.querySelectorAll('.auth__tab').forEach(function (t) {
+        t.classList.toggle('is-active', t.getAttribute('data-panel') === targetId);
+      });
+      document.querySelectorAll('.auth__panel').forEach(function (p) {
+        p.classList.toggle('is-active', p.id === targetId);
+      });
+    });
+  });
+</script>
+</body>
+</html>

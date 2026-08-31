@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly — Insurance, layered right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      Stackly
+    </a>
+
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html" class="is-active">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta">Login</a>
+    </nav>
+
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow">Auto · Home · Health · Life</p>
+        <h1>
+          Protection<br>
+          built in <em>layers.</em>
+        </h1>
+        <p class="hero__sub">
+          Stack the coverage you actually need, skip the parts you don't, and see the whole plan on one screen — no agent required, no fine print ambush.
+        </p>
+        <div class="hero__actions">
+          <a href="#quote" class="btn btn--primary">Build your stack</a>
+          <a href="#how" class="btn btn--ghost">See how it works</a>
+        </div>
+        <p class="hero__trust"><i class="fa-solid fa-star"></i> Rated 4.9/5 by 38,000+ policyholders</p>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__photo">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=760&q=80" alt="">
+        </div>
+        <div class="stack" id="stack">
+          <div class="stack__block" data-layer="life" style="--c:var(--ink-2)">
+            <i class="fa-solid fa-shield-heart"></i><span>Life</span>
+          </div>
+          <div class="stack__block" data-layer="health" style="--c:var(--coral)">
+            <i class="fa-solid fa-stethoscope"></i><span>Health</span>
+          </div>
+          <div class="stack__block" data-layer="home" style="--c:var(--teal)">
+            <i class="fa-solid fa-house"></i><span>Home</span>
+          </div>
+          <div class="stack__block" data-layer="auto" style="--c:var(--amber)">
+            <i class="fa-solid fa-car"></i><span>Auto</span>
+          </div>
+          <div class="stack__ground"></div>
+        </div>
+        <p class="stack__caption">Your stack, live</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STATS ============ -->
+  <section class="stats" id="stats">
+    <div class="stats__inner">
+      <div class="stat">
+        <i class="fa-solid fa-layer-group"></i>
+        <span class="stat__num" data-count="240000" data-suffix="+">0</span>
+        <span class="stat__label">policies stacked</span>
+      </div>
+      <div class="stat">
+        <i class="fa-solid fa-sack-dollar"></i>
+        <span class="stat__num" data-count="18" data-prefix="$" data-suffix="M">0</span>
+        <span class="stat__label">paid in claims last year</span>
+      </div>
+      <div class="stat">
+        <i class="fa-solid fa-bolt"></i>
+        <span class="stat__num" data-count="9" data-suffix=" min">0</span>
+        <span class="stat__label">average time to a quote</span>
+      </div>
+      <div class="stat">
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <span class="stat__num" data-count="49" data-decimal="true" data-suffix="/5">0</span>
+        <span class="stat__label">average policyholder rating</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LAYERS / COVERAGE ============ -->
+  <section class="layers" id="layers">
+    <div class="section__head reveal">
+      <p class="eyebrow">The four layers</p>
+      <h2>Pick what covers you.<br>Skip what doesn't.</h2>
+      <p class="section__sub">Every Stackly plan is built from these four layers. Add one, add all four — the price only reflects what you're actually carrying.</p>
+    </div>
+
+    <div class="layer-grid">
+      <article class="layer-card reveal" style="--lc:var(--amber)">
+        <div class="layer-card__photo">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=500&q=80" alt="Car on a road, representing auto coverage">
+        </div>
+        <div class="layer-card__body">
+          <div class="layer-card__top">
+            <span class="layer-card__icon"><i class="fa-solid fa-car"></i></span>
+            <span class="layer-card__tag">Layer 01</span>
+          </div>
+          <h3>Auto</h3>
+          <p>Collision, liability, and roadside help that kicks in before you've finished dialing.</p>
+          <a href="#quote" class="layer-card__link">Add this layer <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="layer-card reveal" style="--lc:var(--teal)">
+        <div class="layer-card__photo">
+          <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=500&q=80" alt="Home exterior, representing home coverage">
+        </div>
+        <div class="layer-card__body">
+          <div class="layer-card__top">
+            <span class="layer-card__icon"><i class="fa-solid fa-house"></i></span>
+            <span class="layer-card__tag">Layer 02</span>
+          </div>
+          <h3>Home</h3>
+          <p>Structure, belongings, and liability cover for renters and owners alike.</p>
+          <a href="#quote" class="layer-card__link">Add this layer <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="layer-card reveal" style="--lc:var(--coral)">
+        <div class="layer-card__photo">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80" alt="Doctor with patient, representing health coverage">
+        </div>
+        <div class="layer-card__body">
+          <div class="layer-card__top">
+            <span class="layer-card__icon"><i class="fa-solid fa-stethoscope"></i></span>
+            <span class="layer-card__tag">Layer 03</span>
+          </div>
+          <h3>Health</h3>
+          <p>Doctor visits to emergency care, with a network that doesn't need a decoder ring.</p>
+          <a href="#quote" class="layer-card__link">Add this layer <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="layer-card reveal" style="--lc:var(--ink-2)">
+        <div class="layer-card__photo">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&q=80" alt="Family together, representing life coverage">
+        </div>
+        <div class="layer-card__body">
+          <div class="layer-card__top">
+            <span class="layer-card__icon"><i class="fa-solid fa-shield-heart"></i></span>
+            <span class="layer-card__tag">Layer 04</span>
+          </div>
+          <h3>Life</h3>
+          <p>Term and whole-life options that keep your family's stack standing without you.</p>
+          <a href="#quote" class="layer-card__link">Add this layer <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON ============ -->
+  <section class="compare" id="compare">
+    <div class="section__head reveal">
+      <p class="eyebrow">Stackly vs. the old way</p>
+      <h2>Same coverage.<br>None of the wait.</h2>
+      <p class="section__sub">We rebuilt the parts of insurance that usually cost you an afternoon on hold.</p>
+    </div>
+
+    <div class="compare__table reveal">
+      <div class="compare__row compare__row--head">
+        <div class="compare__cell compare__cell--label"></div>
+        <div class="compare__cell compare__cell--col">Traditional insurer</div>
+        <div class="compare__cell compare__cell--col compare__cell--stackly">Stackly</div>
+      </div>
+
+      <div class="compare__row">
+        <div class="compare__cell compare__cell--label">Get a quote</div>
+        <div class="compare__cell">Phone call or agent visit</div>
+        <div class="compare__cell compare__cell--stackly"><span class="check"><i class="fa-solid fa-check"></i></span> Under 9 minutes, online</div>
+      </div>
+      <div class="compare__row">
+        <div class="compare__cell compare__cell--label">Add or drop coverage</div>
+        <div class="compare__cell">New paperwork, new wait</div>
+        <div class="compare__cell compare__cell--stackly"><span class="check"><i class="fa-solid fa-check"></i></span> Toggle a layer, live pricing</div>
+      </div>
+      <div class="compare__row">
+        <div class="compare__cell compare__cell--label">File a claim</div>
+        <div class="compare__cell">Business hours only</div>
+        <div class="compare__cell compare__cell--stackly"><span class="check"><i class="fa-solid fa-check"></i></span> 24/7, from the app</div>
+      </div>
+      <div class="compare__row">
+        <div class="compare__cell compare__cell--label">Bundle discount</div>
+        <div class="compare__cell">Fixed, opaque tiers</div>
+        <div class="compare__cell compare__cell--stackly"><span class="check"><i class="fa-solid fa-check"></i></span> Scales with every layer added</div>
+      </div>
+      <div class="compare__row">
+        <div class="compare__cell compare__cell--label">Price breakdown</div>
+        <div class="compare__cell">Bundled into one number</div>
+        <div class="compare__cell compare__cell--stackly"><span class="check"><i class="fa-solid fa-check"></i></span> Itemized, layer by layer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTNERS STRIP ============ -->
+  <section class="partners" id="partners">
+    <p class="partners__label reveal">Underwritten alongside</p>
+    <div class="partners__marquee">
+      <div class="partners__track">
+        <span><i class="fa-solid fa-building-columns"></i>Meridian Mutual</span>
+        <span><i class="fa-solid fa-anchor"></i>Harborline Re</span>
+        <span><i class="fa-solid fa-mountain"></i>Northfield Assurance</span>
+        <span><i class="fa-solid fa-tree"></i>Cedar &amp; Vale</span>
+        <span><i class="fa-solid fa-water"></i>Ampara Group</span>
+        <span><i class="fa-solid fa-gem"></i>Bluecrest Underwriters</span>
+        <!-- duplicated for seamless loop -->
+        <span aria-hidden="true"><i class="fa-solid fa-building-columns"></i>Meridian Mutual</span>
+        <span aria-hidden="true"><i class="fa-solid fa-anchor"></i>Harborline Re</span>
+        <span aria-hidden="true"><i class="fa-solid fa-mountain"></i>Northfield Assurance</span>
+        <span aria-hidden="true"><i class="fa-solid fa-tree"></i>Cedar &amp; Vale</span>
+        <span aria-hidden="true"><i class="fa-solid fa-water"></i>Ampara Group</span>
+        <span aria-hidden="true"><i class="fa-solid fa-gem"></i>Bluecrest Underwriters</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how" id="how">
+    <div class="section__head reveal">
+      <p class="eyebrow">Three steps</p>
+      <h2>From zero coverage<br>to fully stacked.</h2>
+    </div>
+
+    <div class="how__list">
+      <div class="how__step reveal">
+        <span class="how__num">01</span>
+        <div>
+          <h3>Pick your layers</h3>
+          <p>Tell us what you're driving, renting, owning, or protecting. Takes about ninety seconds.</p>
+        </div>
+      </div>
+      <div class="how__step reveal">
+        <span class="how__num">02</span>
+        <div>
+          <h3>Stack your plan</h3>
+          <p>Drag layers in or out and watch the price update live — no calls, no waiting on quotes.</p>
+        </div>
+      </div>
+      <div class="how__step reveal">
+        <span class="how__num">03</span>
+        <div>
+          <h3>Get covered today</h3>
+          <p>Sign digitally and you're active same-day. Claims start the same way: online, in minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <section class="quote-block">
+    <div class="quote-block__inner reveal">
+      <div class="quote-block__avatar">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Priya N.">
+      </div>
+      <p class="quote-block__mark" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></p>
+      <blockquote>
+        I dropped health coverage when I switched jobs and picked it back up the same afternoon. No paperwork, no waiting on hold — the stack just updated.
+      </blockquote>
+      <cite>— Priya N., Stackly member since 2022</cite>
+    </div>
+  </section>
+
+  <!-- ============ PLANS ============ -->
+  <section class="plans" id="plans">
+    <div class="section__head reveal">
+      <p class="eyebrow">Simple pricing</p>
+      <h2>Three ways to stack.</h2>
+      <p class="section__sub">Every plan scales with the layers you choose — these are starting points, not ceilings.</p>
+    </div>
+
+    <div class="plan-grid">
+      <div class="plan-card reveal">
+        <h3>Base</h3>
+        <p class="plan-card__desc">One layer, done properly.</p>
+        <p class="plan-card__price"><span>$29</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Any single layer</li>
+          <li><i class="fa-solid fa-check"></i>24/7 claims line</li>
+          <li><i class="fa-solid fa-check"></i>Digital policy card</li>
+        </ul>
+        <a href="#quote" class="btn btn--outline">Start here</a>
+      </div>
+
+      <div class="plan-card plan-card--featured reveal">
+        <span class="plan-card__badge">Most stacked</span>
+        <h3>Layered</h3>
+        <p class="plan-card__desc">Two or three layers, bundled.</p>
+        <p class="plan-card__price"><span>$68</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Any 2–3 layers</li>
+          <li><i class="fa-solid fa-check"></i>Bundle discount included</li>
+          <li><i class="fa-solid fa-check"></i>Priority claims handling</li>
+          <li><i class="fa-solid fa-check"></i>Free annual coverage review</li>
+        </ul>
+        <a href="#quote" class="btn btn--primary">Start here</a>
+      </div>
+
+      <div class="plan-card reveal">
+        <h3>Full Stack</h3>
+        <p class="plan-card__desc">All four layers, maximum discount.</p>
+        <p class="plan-card__price"><span>$104</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Auto, Home, Health &amp; Life</li>
+          <li><i class="fa-solid fa-check"></i>Deepest bundle discount</li>
+          <li><i class="fa-solid fa-check"></i>Dedicated account line</li>
+          <li><i class="fa-solid fa-check"></i>Free annual coverage review</li>
+        </ul>
+        <a href="#quote" class="btn btn--outline">Start here</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GET THE APP ============ -->
+  <section class="app-promo" id="app">
+    <div class="app-promo__inner">
+      <div class="app-promo__copy reveal">
+        <p class="eyebrow">Stackly, in your pocket</p>
+        <h2>Your whole stack,<br>one screen.</h2>
+        <p class="section__sub">Check coverage, file a claim, or add a layer before your coffee's ready. No hold music, ever.</p>
+        <div class="app-promo__badges">
+          <a href="#" class="store-badge">
+            <i class="fa-brands fa-apple"></i>
+            <span class="store-badge__text"><small>Download on the</small>App Store</span>
+          </a>
+          <a href="#" class="store-badge">
+            <i class="fa-brands fa-google-play"></i>
+            <span class="store-badge__text"><small>Get it on</small>Google Play</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="app-promo__visual reveal" aria-hidden="true">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <div class="phone__bar">
+              <span></span>
+              <span class="phone__bar-title">My stack</span>
+            </div>
+            <div class="phone__mini-block" style="--c:var(--amber)"><i class="fa-solid fa-car"></i>Auto — active</div>
+            <div class="phone__mini-block" style="--c:var(--teal)"><i class="fa-solid fa-house"></i>Home — active</div>
+            <div class="phone__mini-block" style="--c:var(--coral)"><i class="fa-solid fa-stethoscope"></i>Health — active</div>
+            <div class="phone__notif">
+              <strong><i class="fa-solid fa-circle-check"></i>Claim approved</strong>
+              <span>Roadside assist · $0 due</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="section__head reveal">
+      <p class="eyebrow">Questions, answered</p>
+      <h2>Before you stack up.</h2>
+    </div>
+
+    <div class="faq__list reveal">
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span>Can I really add or remove a layer anytime?</span>
+          <span class="faq__icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq__answer">
+          <p>Yes. Toggle any layer from the app or site and the change applies at your next billing cycle — no forms, no waiting on approval.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span>What happens to my rate when I bundle layers?</span>
+          <span class="faq__icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq__answer">
+          <p>Every additional layer increases your bundle discount. Two layers save you roughly 10%, three save 18%, and all four save 27% versus buying each separately.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span>How fast are claims actually paid out?</span>
+          <span class="faq__icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq__answer">
+          <p>Straightforward claims — roadside, minor property, urgent care — are typically approved within 48 hours. Complex claims get a dedicated adjuster and a clear timeline upfront.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span>Is Stackly available outside the US?</span>
+          <span class="faq__icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq__answer">
+          <p>Not yet — we currently underwrite in the continental US. Coverage in additional regions is planned as our carrier partnerships expand.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span>Can I switch from my current insurer mid-policy?</span>
+          <span class="faq__icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq__answer">
+          <p>Usually, yes. We'll check your current policy's cancellation terms during signup and time your Stackly coverage to start the moment the old one ends, so there's no gap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <div class="contact__copy reveal">
+        <p class="eyebrow">Still deciding?</p>
+        <h2>Talk to a real person.<br>Not a script.</h2>
+        <p class="section__sub">Send a few details and someone from the team gets back to you within one business day — usually much sooner.</p>
+        <ul class="contact__details">
+          <li><i class="fa-solid fa-headset"></i><span><strong>Support</strong> support@stackly.example</span></li>
+          <li><i class="fa-solid fa-briefcase"></i><span><strong>Sales</strong> hello@stackly.example</span></li>
+          <li><i class="fa-solid fa-clock"></i><span><strong>Hours</strong> Mon–Fri, 7am–9pm ET</span></li>
+        </ul>
+      </div>
+
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">What can we help with?</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Send message</button>
+        <p class="contact__status" id="contactStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="cta" id="quote">
+    <div class="cta__inner reveal">
+      <h2>Ready to see your stack?</h2>
+      <p>Answer a few questions and get real numbers — not a sales call.</p>
+      <a href="#top" class="btn btn--primary btn--lg">Get your free quote</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand-col">
+      <a href="#top" class="footer__brand">
+        <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Stackly</span>
+      </a>
+      <p class="footer__tagline">Coverage that stacks in your favor. Auto, home, health and life — one plan, one price you can see through.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Stackly on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Stackly on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Stackly on Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4>Coverage</h4>
+        <a href="#layers">Auto</a>
+        <a href="#layers">Home</a>
+        <a href="#layers">Health</a>
+        <a href="#layers">Life</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="./about.html">About</a>
+        <a href="#how">How it works</a>
+        <a href="#plans">Plans</a>
+        <a href="#partners">Underwriting partners</a>
+      </div>
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <a href="./blog.html">Blog</a>
+        <a href="#faq">FAQ</a>
+        <a href="./service.html">Services</a>
+        <a href="./contact.html">Help center</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Licensing</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="./contact.html">Contact us</a>
+        <a href="mailto:support@stackly.example">support@stackly.example</a>
+        <a href="mailto:hello@stackly.example">hello@stackly.example</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>© 2026 Stackly Insurance Co. Stackly is a fictional brand created for demonstration purposes.</p>
+    <div class="footer__bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

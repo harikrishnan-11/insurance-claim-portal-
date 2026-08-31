@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="404.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      Stackly
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta">Login</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main>
+  <section class="notfound">
+    <div class="notfound__inner">
+
+      <div class="notfound__visual" aria-hidden="true">
+        <div class="notfound__stack" id="tumbleStack">
+          <div class="notfound__block" style="--c:var(--amber); --r:-14deg;"><i class="fa-solid fa-car"></i></div>
+          <div class="notfound__block" style="--c:var(--teal); --r:9deg;"><i class="fa-solid fa-house"></i></div>
+          <div class="notfound__block" style="--c:var(--coral); --r:-6deg;"><i class="fa-solid fa-stethoscope"></i></div>
+          <div class="notfound__block" style="--c:var(--ink-2); --r:12deg;"><i class="fa-solid fa-shield-heart"></i></div>
+        </div>
+        <p class="notfound__code">404</p>
+      </div>
+
+      <p class="eyebrow" style="justify-content:center; display:flex;">Layer not found</p>
+      <h1>This page fell out of the stack.</h1>
+      <p class="notfound__sub">The page you're looking for doesn't exist, moved, or never got added as a layer. Let's get you back to solid ground.</p>
+
+      <form class="notfound__search" id="notfoundSearch" novalidate>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search Stackly — try 'claims' or 'auto quote'" aria-label="Search Stackly">
+        <button type="submit" class="btn btn--primary">Search</button>
+      </form>
+
+      <div class="notfound__actions">
+        <a href="./index.html" class="btn btn--primary"><i class="fa-solid fa-house"></i> Back to home</a>
+        <a href="./contact.html" class="btn btn--ghost"><i class="fa-solid fa-headset"></i> Contact support</a>
+      </div>
+
+      <div class="notfound__links">
+        <p class="notfound__links-label">Or jump straight to</p>
+        <div class="notfound__links-grid">
+          <a href="./about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+          <a href="./service.html"><i class="fa-solid fa-layer-group"></i> Service</a>
+          <a href="./blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>
+          <a href="./index.html#plans"><i class="fa-solid fa-tags"></i> Pricing</a>
+          <a href="./index.html#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+          <a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="404.js"></script>
+</body>
+</html>

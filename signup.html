@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="signup.css">
+<style>
+    /* ===========================================================
+   STACKLY — signup page
+   Extends style.css tokens. Load after style.css.
+   =========================================================== */
+
+.auth__logo{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--font-display); font-weight:700; font-size:20px; margin-bottom:36px;
+}
+.auth__field{ position:relative; margin-bottom:16px; }
+.auth__field i{ position:absolute; left:16px; top:50%; transform:translateY(-50%); color:rgba(16,24,38,.35); font-size:14px; }
+.auth__field input{
+  width:100%; padding:13px 16px 13px 42px; border-radius:12px; border:1.5px solid var(--line);
+  background:var(--paper-2); font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  transition:border-color .2s, box-shadow .2s;
+}
+.auth__field input:focus{ outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,174,142,.15); }
+.auth__field-toggle{ position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:rgba(16,24,38,.4); cursor:pointer; font-size:14px; }
+.auth__divider{ display:flex; align-items:center; gap:14px; margin:24px 0 22px; color:rgba(16,24,38,.4); font-size:12.5px; font-family:var(--font-mono); text-transform:uppercase; }
+.auth__divider::before, .auth__divider::after{ content:""; flex:1; height:1px; background:var(--line); }
+.auth__social{ display:flex; gap:12px; }
+.auth__social button{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:11px; border-radius:12px; border:1.5px solid var(--line); background:var(--paper-2);
+  font-family:var(--font-body); font-size:13.5px; font-weight:600; color:var(--ink); cursor:pointer;
+  transition:border-color .2s, transform .2s var(--ease);
+}
+.auth__social button:hover{ border-color:var(--ink); transform:translateY(-2px); }
+
+/* ---------- Layout ---------- */
+.signup{ padding:0; background:var(--paper); }
+.signup__inner{ min-height:calc(100vh - 74px); display:grid; grid-template-columns:1fr 1fr; }
+
+/* ---------- Visual side ---------- */
+.signup__visual{ position:relative; overflow:hidden; }
+.signup__visual img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.signup__visual::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(200deg, rgba(16,24,38,.2), rgba(16,24,38,.9));
+}
+.signup__visual-copy{
+  position:relative; z-index:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:56px; color:var(--paper);
+}
+.signup__visual-eyebrow{
+  font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--amber); display:flex; align-items:center; gap:8px; margin-bottom:22px;
+}
+.signup__stack{ display:flex; flex-direction:column-reverse; gap:10px; margin-bottom:26px; max-width:280px; }
+.signup__stack .stack__block{
+  height:52px; animation:none; opacity:0; transform:translateX(-24px);
+  animation:stackSlide .6s var(--ease) forwards;
+}
+.signup__stack .stack__block:nth-child(1){ animation-delay:.5s; }
+.signup__stack .stack__block:nth-child(2){ animation-delay:.35s; }
+.signup__stack .stack__block:nth-child(3){ animation-delay:.2s; }
+.signup__stack .stack__block:nth-child(4){ animation-delay:.05s; }
+@keyframes stackSlide{ to{ opacity:1; transform:translateX(0); } }
+.signup__visual-copy h2{ color:var(--paper); font-size:clamp(24px,2.6vw,32px); margin-bottom:12px; max-width:16ch; }
+.signup__visual-copy > p{ color:rgba(238,241,246,.7); font-size:14.5px; max-width:38ch; margin-bottom:22px; }
+.signup__perks{ display:flex; flex-direction:column; gap:10px; }
+.signup__perks li{ display:flex; align-items:center; gap:10px; font-size:13.5px; color:rgba(238,241,246,.85); }
+.signup__perks i{ color:var(--teal); font-size:12px; }
+
+/* ---------- Form side ---------- */
+.signup__form-wrap{ display:flex; align-items:center; justify-content:center; padding:56px 24px; }
+.signup__form{ width:100%; max-width:420px; position:relative; }
+.signup__form h1{ font-size:30px; margin-bottom:8px; }
+.signup__sub{ color:rgba(16,24,38,.6); font-size:14.5px; margin-bottom:32px; }
+.signup__sub a{ color:var(--teal); font-weight:600; }
+
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+/* ---------- Password strength meter ---------- */
+.strength-meter{ margin:-4px 0 18px; }
+.strength-meter__bars{ display:flex; gap:6px; margin-bottom:6px; }
+.strength-meter__bars span{
+  height:4px; flex:1; border-radius:99px; background:var(--line);
+  transition:background .3s var(--ease);
+}
+.strength-meter__label{ font-family:var(--font-mono); font-size:11.5px; color:rgba(16,24,38,.45); transition:color .3s; }
+.strength-meter.weak .strength-meter__bars span:nth-child(1){ background:var(--coral); }
+.strength-meter.weak .strength-meter__label{ color:var(--coral); }
+.strength-meter.fair .strength-meter__bars span:nth-child(1),
+.strength-meter.fair .strength-meter__bars span:nth-child(2){ background:var(--amber-dark); }
+.strength-meter.fair .strength-meter__label{ color:var(--amber-dark); }
+.strength-meter.good .strength-meter__bars span:nth-child(1),
+.strength-meter.good .strength-meter__bars span:nth-child(2),
+.strength-meter.good .strength-meter__bars span:nth-child(3){ background:var(--teal); }
+.strength-meter.good .strength-meter__label{ color:var(--teal); }
+.strength-meter.strong .strength-meter__bars span{ background:var(--teal); }
+.strength-meter.strong .strength-meter__label{ color:var(--teal); }
+
+/* ---------- Terms checkbox ---------- */
+.signup__terms{
+  display:flex; align-items:flex-start; gap:10px; font-size:13px; color:rgba(16,24,38,.65);
+  margin-bottom:22px; cursor:pointer; line-height:1.5;
+}
+.signup__terms input{ margin-top:3px; accent-color:var(--teal); flex-shrink:0; }
+.signup__terms a{ color:var(--teal); font-weight:600; }
+
+.signup__form .btn{ width:100%; }
+
+/* ---------- Field error (password mismatch) ---------- */
+.field-error{
+  display:none; align-items:center; gap:6px; font-size:12.5px; color:var(--coral);
+  margin:-10px 0 16px; font-family:var(--font-mono);
+}
+.field-error.is-visible{ display:flex; }
+
+/* ---------- Success state ---------- */
+.signup__success{
+  display:none; text-align:center; padding:20px 0 10px; animation:successIn .5s var(--ease);
+}
+.signup__success.is-visible{ display:block; }
+.signup__success-icon{
+  width:64px; height:64px; border-radius:50%; background:var(--teal); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:26px; margin:0 auto 20px;
+  animation:successPop .5s var(--ease);
+}
+.signup__success h2{ font-size:26px; margin-bottom:10px; }
+.signup__success p{ color:rgba(16,24,38,.62); font-size:14.5px; margin-bottom:26px; max-width:34ch; margin-left:auto; margin-right:auto; }
+@keyframes successIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+@keyframes successPop{ 0%{ transform:scale(0); } 70%{ transform:scale(1.1); } 100%{ transform:scale(1); } }
+.signup__form form.is-hidden,
+.signup__form .auth__divider.is-hidden,
+.signup__form .auth__social.is-hidden,
+.signup__form .signup__sub.is-hidden{ display:none; }
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media (max-width: 1000px){
+  .signup__inner{ grid-template-columns:1fr; }
+  .signup__visual{ min-height:300px; }
+  .signup__visual-copy{ padding:32px; }
+  .signup__stack{ max-width:220px; }
+}
+@media (max-width: 520px){
+  .field-row{ grid-template-columns:1fr; }
+  .signup__form-wrap{ padding:40px 20px; }
+  .auth__social{ flex-direction:column; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .signup__stack .stack__block{ opacity:1; transform:none; animation:none; }
+  .signup__success{ animation:none; }
+  .signup__success-icon{ animation:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      Stackly
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta">Login</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main>
+  <section class="signup">
+    <div class="signup__inner">
+
+      <!-- ============ VISUAL SIDE ============ -->
+      <div class="signup__visual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="">
+        <div class="signup__visual-copy">
+          <p class="signup__visual-eyebrow"><i class="fa-solid fa-layer-group"></i> Build your stack</p>
+          <div class="signup__stack">
+            <div class="stack__block" style="--c:var(--ink-2)"><i class="fa-solid fa-shield-heart"></i><span>Life</span></div>
+            <div class="stack__block" style="--c:var(--coral)"><i class="fa-solid fa-stethoscope"></i><span>Health</span></div>
+            <div class="stack__block" style="--c:var(--teal)"><i class="fa-solid fa-house"></i><span>Home</span></div>
+            <div class="stack__block" style="--c:var(--amber)"><i class="fa-solid fa-car"></i><span>Auto</span></div>
+          </div>
+          <h2>Coverage that stacks in about ninety seconds.</h2>
+          <p>Create an account, tell us what you're protecting, and get real pricing before your coffee's ready.</p>
+          <ul class="signup__perks">
+            <li><i class="fa-solid fa-check"></i>No agent, no hold music</li>
+            <li><i class="fa-solid fa-check"></i>Cancel or adjust any layer, anytime</li>
+            <li><i class="fa-solid fa-check"></i>Free to quote, no obligation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============ FORM SIDE ============ -->
+      <div class="signup__form-wrap">
+        <div class="signup__form">
+          <a href="./index.html" class="auth__logo">
+            <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            Stackly
+          </a>
+
+          <h1>Create your account.</h1>
+          <p class="signup__sub">Already stacked? <a href="./login.html">Log in instead</a></p>
+
+          <!-- Success state, hidden until submit -->
+          <div class="signup__success" id="signupSuccess">
+            <span class="signup__success-icon"><i class="fa-solid fa-check"></i></span>
+            <h2>You're in.</h2>
+            <p>Check your inbox to confirm your email, then jump straight into building your stack.</p>
+            <a href="./index.html#quote" class="btn btn--primary">Start your stack</a>
+          </div>
+
+          <form novalidate id="signupForm">
+            <div class="field-row">
+              <div class="auth__field">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="firstName" placeholder="First name" required autocomplete="given-name">
+              </div>
+              <div class="auth__field">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="lastName" placeholder="Last name" required autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="auth__field">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="signupEmail" placeholder="Email address" required autocomplete="email">
+            </div>
+
+            <div class="auth__field">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="signupPassword" placeholder="Create password" required autocomplete="new-password" minlength="8">
+              <button type="button" class="auth__field-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+            </div>
+
+            <div class="strength-meter" id="strengthMeter">
+              <div class="strength-meter__bars">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <span class="strength-meter__label" id="strengthLabel">Password strength</span>
+            </div>
+
+            <div class="auth__field">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="confirmPassword" placeholder="Confirm password" required autocomplete="new-password">
+              <button type="button" class="auth__field-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <p class="field-error" id="matchError"><i class="fa-solid fa-circle-exclamation"></i> Passwords don't match</p>
+
+            <label class="signup__terms">
+              <input type="checkbox" id="agreeTerms" required>
+              <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+            </label>
+
+            <button type="submit" class="btn btn--primary">Create account</button>
+          </form>
+
+          <div class="auth__divider">or sign up with</div>
+          <div class="auth__social">
+            <button type="button"><i class="fa-brands fa-google"></i> Google</button>
+            <button type="button"><i class="fa-brands fa-apple"></i> Apple</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="signup.js">
+    (function () {
+  "use strict";
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------------------------------------------------
+     Sticky nav shrink on scroll
+     --------------------------------------------------------- */
+  var nav = document.getElementById("nav");
+  function handleNavScroll() {
+    if (window.scrollY > 12) {
+      nav.classList.add("is-scrolled");
+    } else {
+      nav.classList.remove("is-scrolled");
+    }
+  }
+  if (nav) {
+    window.addEventListener("scroll", handleNavScroll, { passive: true });
+    handleNavScroll();
+  }
+
+  /* ---------------------------------------------------------
+     Mobile menu toggle
+     --------------------------------------------------------- */
+  var burger = document.getElementById("burger");
+  var mobileMenu = document.getElementById("mobileMenu");
+  function closeMenu() {
+    mobileMenu.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  function openMenu() {
+    mobileMenu.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  if (burger && mobileMenu) {
+    burger.addEventListener("click", function () {
+      var isOpen = mobileMenu.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+  }
+
+  /* ---------------------------------------------------------
+     Password visibility toggles
+     --------------------------------------------------------- */
+  document.querySelectorAll(".auth__field-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var input = btn.parentElement.querySelector("input");
+      var icon = btn.querySelector("i");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
+    });
+  });
+
+  /* ---------------------------------------------------------
+     Password strength meter
+     --------------------------------------------------------- */
+  var passwordInput = document.getElementById("signupPassword");
+  var strengthMeter = document.getElementById("strengthMeter");
+  var strengthLabel = document.getElementById("strengthLabel");
+
+  function scorePassword(value) {
+    var score = 0;
+    if (value.length >= 8) score++;
+    if (value.length >= 12) score++;
+    if (/[A-Z]/.test(value) && /[a-z]/.test(value)) score++;
+    if (/[0-9]/.test(value) && /[^A-Za-z0-9]/.test(value)) score++;
+    return Math.min(score, 4);
+  }
+
+  var strengthLevels = ["weak", "fair", "good", "strong"];
+  var strengthText = ["Weak password", "Fair password", "Good password", "Strong password"];
+
+  if (passwordInput && strengthMeter) {
+    passwordInput.addEventListener("input", function () {
+      var value = passwordInput.value;
+      strengthMeter.classList.remove("weak", "fair", "good", "strong");
+      if (!value) {
+        strengthLabel.textContent = "Password strength";
+        return;
+      }
+      var score = scorePassword(value);
+      var levelIndex = Math.max(score - 1, 0);
+      strengthMeter.classList.add(strengthLevels[levelIndex]);
+      strengthLabel.textContent = strengthText[levelIndex];
+    });
+  }
+
+  /* ---------------------------------------------------------
+     Password match validation
+     --------------------------------------------------------- */
+  var confirmInput = document.getElementById("confirmPassword");
+  var matchError = document.getElementById("matchError");
+
+  function checkMatch() {
+    if (!confirmInput.value) {
+      matchError.classList.remove("is-visible");
+      return true;
+    }
+    var matches = passwordInput.value === confirmInput.value;
+    matchError.classList.toggle("is-visible", !matches);
+    return matches;
+  }
+  if (confirmInput) {
+    confirmInput.addEventListener("input", checkMatch);
+    passwordInput.addEventListener("input", checkMatch);
+  }
+
+  /* ---------------------------------------------------------
+     Form submit — demo success state
+     --------------------------------------------------------- */
+  var signupForm = document.getElementById("signupForm");
+  var signupSuccess = document.getElementById("signupSuccess");
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!signupForm.checkValidity()) {
+        signupForm.reportValidity();
+        return;
+      }
+      if (!checkMatch()) {
+        confirmInput.focus();
+        return;
+      }
+
+      var submitBtn = signupForm.querySelector("button[type='submit']");
+      var originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Creating account…";
+
+      window.setTimeout(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+
+        signupForm.classList.add("is-hidden");
+        document.querySelectorAll(".signup__form .auth__divider, .signup__form .auth__social, .signup__sub")
+          .forEach(function (el) { el.classList.add("is-hidden"); });
+        signupSuccess.classList.add("is-visible");
+
+        if (!prefersReducedMotion) {
+          signupSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 800);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

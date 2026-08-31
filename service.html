@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      Stackly
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html" class="is-active">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta">Login</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <div class="page-hero__bg"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1400&q=80" alt=""></div>
+    <div class="page-hero__inner">
+      <p class="crumb"><a href="./index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Service</span></p>
+      <h1>Four layers of cover, explained <em>properly.</em></h1>
+      <p>No jargon, no fine print ambush. Here's exactly what each layer includes, what it costs to add, and how claims actually get paid.</p>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE DETAIL ROWS ============ -->
+  <section class="service-detail">
+    <div class="service-detail__inner">
+
+      <div class="service-row reveal">
+        <div class="service-row__photo">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&q=80" alt="Car driving on a highway">
+        </div>
+        <div class="service-row__copy">
+          <span class="icon-chip" style="background:var(--amber)"><i class="fa-solid fa-car"></i></span>
+          <h2>Auto coverage</h2>
+          <p>Collision, liability, and roadside assistance that responds before you've finished describing the fender-bender.</p>
+          <ul class="service-row__list">
+            <li><i class="fa-solid fa-check"></i>Collision &amp; comprehensive damage</li>
+            <li><i class="fa-solid fa-check"></i>Liability protection up to your chosen limit</li>
+            <li><i class="fa-solid fa-check"></i>24/7 roadside assistance and towing</li>
+            <li><i class="fa-solid fa-check"></i>Rental reimbursement while you're covered</li>
+          </ul>
+          <p class="service-row__price">Starting at <strong>$29</strong>/mo</p>
+        </div>
+      </div>
+
+      <div class="service-row service-row--rev reveal">
+        <div class="service-row__photo">
+          <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=700&q=80" alt="Modern house exterior">
+        </div>
+        <div class="service-row__copy">
+          <span class="icon-chip" style="background:var(--teal)"><i class="fa-solid fa-house"></i></span>
+          <h2>Home coverage</h2>
+          <p>Structure, belongings, and liability protection built for renters and owners — same layer, different limits.</p>
+          <ul class="service-row__list">
+            <li><i class="fa-solid fa-check"></i>Dwelling &amp; structure protection</li>
+            <li><i class="fa-solid fa-check"></i>Personal belongings, replacement cost</li>
+            <li><i class="fa-solid fa-check"></i>Liability &amp; guest medical coverage</li>
+            <li><i class="fa-solid fa-check"></i>Temporary housing if you're displaced</li>
+          </ul>
+          <p class="service-row__price">Starting at <strong>$24</strong>/mo</p>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-row__photo">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80" alt="Doctor examining a patient">
+        </div>
+        <div class="service-row__copy">
+          <span class="icon-chip" style="background:var(--coral)"><i class="fa-solid fa-stethoscope"></i></span>
+          <h2>Health coverage</h2>
+          <p>From annual checkups to emergency care, with an in-network directory that's actually searchable.</p>
+          <ul class="service-row__list">
+            <li><i class="fa-solid fa-check"></i>Primary &amp; specialist visits</li>
+            <li><i class="fa-solid fa-check"></i>Emergency &amp; urgent care</li>
+            <li><i class="fa-solid fa-check"></i>Prescription drug coverage</li>
+            <li><i class="fa-solid fa-check"></i>Mental health &amp; telehealth included</li>
+          </ul>
+          <p class="service-row__price">Starting at <strong>$41</strong>/mo</p>
+        </div>
+      </div>
+
+      <div class="service-row service-row--rev reveal">
+        <div class="service-row__photo">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=700&q=80" alt="Family spending time together outdoors">
+        </div>
+        <div class="service-row__copy">
+          <span class="icon-chip" style="background:var(--ink-2)"><i class="fa-solid fa-shield-heart"></i></span>
+          <h2>Life coverage</h2>
+          <p>Term and whole-life options that keep your family's stack standing without you having to think about it twice.</p>
+          <ul class="service-row__list">
+            <li><i class="fa-solid fa-check"></i>Term life, 10 to 30-year options</li>
+            <li><i class="fa-solid fa-check"></i>Whole-life with cash value growth</li>
+            <li><i class="fa-solid fa-check"></i>No medical exam under $500k</li>
+            <li><i class="fa-solid fa-check"></i>Beneficiaries editable anytime, free</li>
+          </ul>
+          <p class="service-row__price">Starting at <strong>$18</strong>/mo</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process">
+    <div class="section__head reveal">
+      <p class="eyebrow">How claims work</p>
+      <h2>Four steps, start to payout.</h2>
+    </div>
+    <div class="process__grid">
+      <div class="process__card reveal">
+        <span class="process__num">01</span>
+        <i class="fa-solid fa-mobile-screen"></i>
+        <h3>File in the app</h3>
+        <p>Describe what happened and upload photos. Takes under five minutes.</p>
+      </div>
+      <div class="process__card reveal">
+        <span class="process__num">02</span>
+        <i class="fa-solid fa-user-check"></i>
+        <h3>Adjuster review</h3>
+        <p>A real person reviews straightforward claims within hours, not weeks.</p>
+      </div>
+      <div class="process__card reveal">
+        <span class="process__num">03</span>
+        <i class="fa-solid fa-file-circle-check"></i>
+        <h3>Decision &amp; timeline</h3>
+        <p>You get a clear approval or explanation — never radio silence.</p>
+      </div>
+      <div class="process__card reveal">
+        <span class="process__num">04</span>
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        <h3>Fast payout</h3>
+        <p>Approved claims are paid within 48 hours, direct to your account.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLANS (reused pattern) ============ -->
+  <section class="plans" id="plans">
+    <div class="section__head reveal">
+      <p class="eyebrow">Simple pricing</p>
+      <h2>Three ways to stack.</h2>
+      <p class="section__sub">Every plan scales with the layers you choose — these are starting points, not ceilings.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card reveal">
+        <h3>Base</h3>
+        <p class="plan-card__desc">One layer, done properly.</p>
+        <p class="plan-card__price"><span>$29</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Any single layer</li>
+          <li><i class="fa-solid fa-check"></i>24/7 claims line</li>
+          <li><i class="fa-solid fa-check"></i>Digital policy card</li>
+        </ul>
+        <a href="./index.html#quote" class="btn btn--outline">Start here</a>
+      </div>
+      <div class="plan-card plan-card--featured reveal">
+        <span class="plan-card__badge">Most stacked</span>
+        <h3>Layered</h3>
+        <p class="plan-card__desc">Two or three layers, bundled.</p>
+        <p class="plan-card__price"><span>$68</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Any 2–3 layers</li>
+          <li><i class="fa-solid fa-check"></i>Bundle discount included</li>
+          <li><i class="fa-solid fa-check"></i>Priority claims handling</li>
+          <li><i class="fa-solid fa-check"></i>Free annual coverage review</li>
+        </ul>
+        <a href="./index.html#quote" class="btn btn--primary">Start here</a>
+      </div>
+      <div class="plan-card reveal">
+        <h3>Full Stack</h3>
+        <p class="plan-card__desc">All four layers, maximum discount.</p>
+        <p class="plan-card__price"><span>$104</span>/mo</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Auto, Home, Health &amp; Life</li>
+          <li><i class="fa-solid fa-check"></i>Deepest bundle discount</li>
+          <li><i class="fa-solid fa-check"></i>Dedicated account line</li>
+          <li><i class="fa-solid fa-check"></i>Free annual coverage review</li>
+        </ul>
+        <a href="./index.html#quote" class="btn btn--outline">Start here</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="cta__inner reveal">
+      <h2>Ready to see your stack?</h2>
+      <p>Answer a few questions and get real numbers — not a sales call.</p>
+      <a href="./index.html#quote" class="btn btn--primary btn--lg">Get your free quote</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand-col">
+      <a href="./index.html" class="footer__brand">
+        <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Stackly</span>
+      </a>
+      <p class="footer__tagline">Coverage that stacks in your favor. Auto, home, health and life — one plan, one price you can see through.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Stackly on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Stackly on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Stackly on Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4>Coverage</h4>
+        <a href="./index.html#layers">Auto</a>
+        <a href="./index.html#layers">Home</a>
+        <a href="./index.html#layers">Health</a>
+        <a href="./index.html#layers">Life</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="./about.html">About</a>
+        <a href="./index.html#how">How it works</a>
+        <a href="./index.html#plans">Plans</a>
+        <a href="./index.html#partners">Underwriting partners</a>
+      </div>
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <a href="./blog.html">Blog</a>
+        <a href="./index.html#faq">FAQ</a>
+        <a href="./service.html">Services</a>
+        <a href="./contact.html">Help center</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Licensing</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="./contact.html">Contact us</a>
+        <a href="mailto:support@stackly.example">support@stackly.example</a>
+        <a href="mailto:hello@stackly.example">hello@stackly.example</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 Stackly Insurance Co. Stackly is a fictional brand created for demonstration purposes.</p>
+    <div class="footer__bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

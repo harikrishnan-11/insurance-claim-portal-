@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      Stackly
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="./index.html">Home</a>
+      <a href="./about.html" class="is-active">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav__cta">Login</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./login.html" class="mobile-menu__cta">Login</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <div class="page-hero__bg"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80" alt=""></div>
+    <div class="page-hero__inner">
+      <p class="crumb"><a href="./index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>About</span></p>
+      <h1>Insurance built by people who've filed a claim <em>and hated it.</em></h1>
+      <p>Stackly started as a frustrated group of engineers, actuaries, and one very persistent claims adjuster who thought coverage shouldn't require a hold-music playlist.</p>
+    </div>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section class="story">
+    <div class="story__inner">
+      <div class="story__gallery reveal">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80" alt="Stackly team working together">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=500&q=80" alt="Team meeting around a table">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&q=80" alt="Team discussing a whiteboard plan">
+      </div>
+      <div class="story__copy reveal">
+        <p class="eyebrow">Our story</p>
+        <h2>From a spreadsheet of complaints to a company.</h2>
+        <p>In 2019, our founders kept a running spreadsheet of every insurance complaint they heard from friends: buried exclusions, agents who vanished after the sale, claims that took months to resolve. The list got long enough that it became a business plan.</p>
+        <p>We built Stackly around one idea: coverage should be as easy to see and adjust as a grocery cart. Add a layer, drop a layer, watch the price change in real time — no phone tree required.</p>
+        <p>Today we underwrite policies across the continental US alongside six carrier partners, but the spreadsheet mentality never left. Every feature we ship still has to answer one question: does this make a bad day easier?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALUES ============ -->
+  <section class="values" id="values">
+    <div class="section__head reveal">
+      <p class="eyebrow">What we stand for</p>
+      <h2>Four things we won't compromise on.</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <span class="icon-chip" style="background:var(--amber)"><i class="fa-solid fa-eye"></i></span>
+        <h3>Total transparency</h3>
+        <p>Every price is itemized by layer. If we can't explain a fee in one sentence, we don't charge it.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="icon-chip" style="background:var(--teal)"><i class="fa-solid fa-gauge-high"></i></span>
+        <h3>Speed that respects you</h3>
+        <p>Quotes in minutes, claims decisions in days — your time is worth more than our process.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="icon-chip" style="background:var(--coral)"><i class="fa-solid fa-sliders"></i></span>
+        <h3>Control, always</h3>
+        <p>Add or drop a layer whenever your life changes. No agent gatekeeping the toggle.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="icon-chip" style="background:var(--ink-2)"><i class="fa-solid fa-handshake"></i></span>
+        <h3>Fair when it counts</h3>
+        <p>Claims are reviewed by people, not just algorithms, and every denial comes with a real explanation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section class="timeline" id="timeline">
+    <div class="section__head reveal">
+      <p class="eyebrow">How we got here</p>
+      <h2>Six years, four layers, one mission.</h2>
+    </div>
+    <div class="timeline__list reveal">
+      <div class="timeline__row">
+        <span class="timeline__year">2019</span>
+        <div><h3>The complaint spreadsheet</h3><p>Three friends start tracking every bad insurance experience they hear about. It becomes the founding brief.</p></div>
+      </div>
+      <div class="timeline__row">
+        <span class="timeline__year">2021</span>
+        <div><h3>Auto layer launches</h3><p>Stackly opens for business with a single layer — auto — in three states, underwritten with Meridian Mutual.</p></div>
+      </div>
+      <div class="timeline__row">
+        <span class="timeline__year">2022</span>
+        <div><h3>Home and Health added</h3><p>The stack grows to three layers. Bundle pricing goes live, and the mobile app ships.</p></div>
+      </div>
+      <div class="timeline__row">
+        <span class="timeline__year">2024</span>
+        <div><h3>Life layer completes the stack</h3><p>All four layers are available nationwide, alongside six underwriting partners.</p></div>
+      </div>
+      <div class="timeline__row">
+        <span class="timeline__year">2026</span>
+        <div><h3>240,000 policies and counting</h3><p>Stackly pays out $18M in claims in a single year while keeping average resolution time under 48 hours.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="team" id="team">
+    <div class="section__head reveal">
+      <p class="eyebrow">Leadership</p>
+      <h2>The people behind the stack.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-card__photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Priya Nandan"></div>
+        <h3>Priya Nandan</h3>
+        <p>Co-founder &amp; CEO</p>
+        <div class="team-card__social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__photo"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Marcus Ito"></div>
+        <h3>Marcus Ito</h3>
+        <p>Co-founder &amp; Chief Actuary</p>
+        <div class="team-card__social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Dana Whitfield"></div>
+        <h3>Dana Whitfield</h3>
+        <p>Head of Claims</p>
+        <div class="team-card__social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__photo"><img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=400&q=80" alt="Owen Ferris"></div>
+        <h3>Owen Ferris</h3>
+        <p>Head of Product</p>
+        <div class="team-card__social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="cta__inner reveal">
+      <h2>Ready to see your stack?</h2>
+      <p>Answer a few questions and get real numbers — not a sales call.</p>
+      <a href="./index.html#quote" class="btn btn--primary btn--lg">Get your free quote</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand-col">
+      <a href="./index.html" class="footer__brand">
+        <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Stackly</span>
+      </a>
+      <p class="footer__tagline">Coverage that stacks in your favor. Auto, home, health and life — one plan, one price you can see through.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Stackly on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Stackly on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Stackly on Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4>Coverage</h4>
+        <a href="./index.html#layers">Auto</a>
+        <a href="./index.html#layers">Home</a>
+        <a href="./index.html#layers">Health</a>
+        <a href="./index.html#layers">Life</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="./about.html">About</a>
+        <a href="./index.html#how">How it works</a>
+        <a href="./index.html#plans">Plans</a>
+        <a href="./index.html#partners">Underwriting partners</a>
+      </div>
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <a href="./blog.html">Blog</a>
+        <a href="./index.html#faq">FAQ</a>
+        <a href="./service.html">Services</a>
+        <a href="./contact.html">Help center</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Licensing</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="./contact.html">Contact us</a>
+        <a href="mailto:support@stackly.example">support@stackly.example</a>
+        <a href="mailto:hello@stackly.example">hello@stackly.example</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 Stackly Insurance Co. Stackly is a fictional brand created for demonstration purposes.</p>
+    <div class="footer__bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
