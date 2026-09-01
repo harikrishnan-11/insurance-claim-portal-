@@ -3,92 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page not found — Stackly</title>
+<title>404 — Page not found | Stackly</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="404.css">
+<style>
+  :root{
+  --ink:        #101826;
+  --ink-2:      #16233E;
+  --paper:      #EEF1F6;
+  --paper-2:    #FFFFFF;
+  --amber:      #FFB703;
+  --amber-dark: #E89A00;
+  --teal:       #1FAE8E;
+  --coral:      #FF6B4A;
+  --line:       rgba(16,24,38,0.10);
+
+  --font-display: "Fraunces", serif;
+  --font-body:    "Inter", sans-serif;
+  --font-mono:    "IBM Plex Mono", monospace;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ overflow-x:hidden; }
+body{
+  margin:0;
+  overflow-x:hidden;
+  min-height:100vh;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+}
+a{ color:inherit; text-decoration:none; }
+h1{ font-family:var(--font-display); font-weight:700; margin:0; letter-spacing:-0.01em; }
+p{ margin:0; }
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--teal); margin:0 0 14px;
+}
+
+/* Buttons (shared look with main site) */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 26px; border-radius:999px; font-weight:600; font-size:15px;
+  border:1.5px solid transparent; cursor:pointer; font-family:var(--font-body);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+}
+.btn--primary{ background:var(--ink); color:var(--paper); }
+.btn--primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(16,24,38,.45); }
+.btn--ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn--ghost:hover{ background:var(--paper-2); transform:translateY(-2px); }
+
+/* Nav */
+.nav{
+  background:rgba(238,241,246,.85);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav__inner{
+  max-width:1180px; margin:0 auto; padding:18px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav__logo{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:20px; }
+.nav__mark{ display:flex; flex-direction:column; gap:3px; width:16px; }
+.nav__mark span{ height:4px; border-radius:2px; background:var(--amber); }
+.nav__mark span:nth-child(2){ background:var(--teal); width:75%; }
+.nav__mark span:nth-child(3){ background:var(--coral); width:50%; }
+.nav__back{ font-size:14px; font-weight:600; color:rgba(16,24,38,.65); transition:color .2s; }
+.nav__back:hover{ color:var(--ink); }
+
+/* Main */
+.notfound{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:56px 24px 40px;
+}
+.notfound__inner{ max-width:560px; margin:0 auto; text-align:center; }
+
+.notfound__sub{
+  font-size:17px; color:rgba(16,24,38,.65); max-width:44ch; margin:20px auto 34px;
+}
+.notfound h1{ font-size:clamp(32px, 5vw, 48px); line-height:1.08; }
+
+.notfound__actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:36px; }
+
+.notfound__links{
+  display:flex; gap:26px; justify-content:center; flex-wrap:wrap;
+  padding-top:24px; border-top:1px solid var(--line);
+  font-size:14px; font-weight:600;
+}
+.notfound__links a{ color:rgba(16,24,38,.6); position:relative; transition:color .2s; }
+.notfound__links a:hover{ color:var(--teal); }
+
+/* Tumbled stack animation */
+.toppled{
+  position:relative;
+  height:170px;
+  width:100%;
+  max-width:360px;
+  margin:0 auto 28px;
+}
+.toppled__ground{
+  position:absolute; left:10%; right:10%; bottom:14px; height:5px;
+  border-radius:99px; background:var(--line);
+}
+.toppled__block{
+  position:absolute;
+  width:120px; height:52px;
+  border-radius:12px;
+  background:var(--c);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 16px 26px -14px rgba(16,24,38,.4);
+  opacity:0;
+  bottom:18px;
+}
+.toppled__block span{
+  font-family:var(--font-mono); font-weight:600; font-size:12.5px;
+  letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.92);
+}
+
+.toppled__block[data-b="1"]{ left:6%;  animation:tumble1 .9s var(--ease) .05s forwards; }
+.toppled__block[data-b="2"]{ left:30%; animation:tumble2 .9s var(--ease) .18s forwards; }
+.toppled__block[data-b="3"]{ left:54%; animation:tumble3 .9s var(--ease) .30s forwards; }
+.toppled__block[data-b="4"]{ left:76%; animation:tumble4 .9s var(--ease) .42s forwards; }
+
+@keyframes tumble1{
+  0%{ opacity:0; bottom:150px; transform:rotate(0deg); }
+  70%{ opacity:1; }
+  100%{ opacity:1; bottom:18px; transform:rotate(-18deg); }
+}
+@keyframes tumble2{
+  0%{ opacity:0; bottom:150px; transform:rotate(0deg); }
+  70%{ opacity:1; }
+  100%{ opacity:1; bottom:20px; transform:rotate(9deg); }
+}
+@keyframes tumble3{
+  0%{ opacity:0; bottom:150px; transform:rotate(0deg); }
+  70%{ opacity:1; }
+  100%{ opacity:1; bottom:16px; transform:rotate(-8deg); }
+}
+@keyframes tumble4{
+  0%{ opacity:0; bottom:150px; transform:rotate(0deg); }
+  70%{ opacity:1; }
+  100%{ opacity:1; bottom:22px; transform:rotate(20deg); }
+}
+
+.toppled__block.settle-float{ animation:settleFloat 4s ease-in-out infinite; }
+@keyframes settleFloat{
+  0%,100%{ opacity:1; }
+  50%{ opacity:1; transform:translateY(-4px) rotate(var(--r, 0deg)); }
+}
+
+/* Footer */
+.notfound__footer{
+  padding:22px 24px; text-align:center;
+  font-size:12.5px; color:rgba(16,24,38,.45);
+  border-top:1px solid var(--line);
+}
+
+/* Responsive */
+@media (max-width: 480px){
+  .toppled{ height:150px; }
+  .toppled__block{ width:96px; height:46px; }
+  .notfound__actions{ flex-direction:column; align-items:stretch; }
+  .notfound__actions .btn{ width:100%; }
+  .notfound__links{ gap:16px 22px; }
+}
+
+@media (max-width: 360px){
+  .nav__inner{ padding-left:16px; padding-right:16px; }
+  .notfound{ padding-left:16px; padding-right:16px; }
+  .toppled{ max-width:290px; height:140px; }
+  .toppled__block{ width:86px; height:42px; }
+  .toppled__block span{ font-size:11px; }
+  .notfound h1{ font-size:28px; }
+  .notfound__sub{ font-size:15px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  .toppled__block{ opacity:1; bottom:18px; }
+}
+</style>
 </head>
 <body>
 
-<header class="nav" id="nav">
+<header class="nav">
   <div class="nav__inner">
-    <a href="./index.html" class="nav__logo" style="color: #E89A00;">
-    
-      <img src="./src/logo/Untitled design.webp" alt="">
+    <a href="index.html" class="nav__logo">
+  <img src="./src/logo/Untitled design.webp" alt="">
     </a>
-    <nav class="nav__links" id="navLinks">
-      <a href="./index.html">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./service.html">Service</a>
-      <a href="./blog.html">Blog</a>
-      <a href="./contact.html">Contact</a>
-      <a href="./login.html" class="nav__cta">Login</a>
-    </nav>
-    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="index.html" class="nav__back">← Back to site</a>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <nav>
-    <a href="./index.html">Home</a>
-    <a href="./about.html">About</a>
-    <a href="./service.html">Service</a>
-    <a href="./blog.html">Blog</a>
-    <a href="./contact.html">Contact</a>
-    <a href="./login.html" class="mobile-menu__cta">Login</a>
-  </nav>
-</div>
+<main class="notfound">
+  <div class="notfound__inner">
 
-<main>
-  <section class="notfound">
-    <div class="notfound__inner">
-
-      <div class="notfound__visual" aria-hidden="true">
-        <div class="notfound__stack" id="tumbleStack">
-          <div class="notfound__block" style="--c:var(--amber); --r:-14deg;"><i class="fa-solid fa-car"></i></div>
-          <div class="notfound__block" style="--c:var(--teal); --r:9deg;"><i class="fa-solid fa-house"></i></div>
-          <div class="notfound__block" style="--c:var(--coral); --r:-6deg;"><i class="fa-solid fa-stethoscope"></i></div>
-          <div class="notfound__block" style="--c:var(--ink-2); --r:12deg;"><i class="fa-solid fa-shield-heart"></i></div>
-        </div>
-        <p class="notfound__code">404</p>
-      </div>
-
-      <p class="eyebrow" style="justify-content:center; display:flex;">Layer not found</p>
-      <h1>This page fell out of the stack.</h1>
-      <p class="notfound__sub">The page you're looking for doesn't exist, moved, or never got added as a layer. Let's get you back to solid ground.</p>
-
-      <form class="notfound__search" id="notfoundSearch" novalidate>
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search Stackly — try 'claims' or 'auto quote'" aria-label="Search Stackly">
-        <button type="submit" class="btn btn--primary">Search</button>
-      </form>
-
-      <div class="notfound__actions">
-        <a href="./index.html" class="btn btn--primary"><i class="fa-solid fa-house"></i> Back to home</a>
-        <a href="./contact.html" class="btn btn--ghost"><i class="fa-solid fa-headset"></i> Contact support</a>
-      </div>
-
-      <div class="notfound__links">
-        <p class="notfound__links-label">Or jump straight to</p>
-        <div class="notfound__links-grid">
-          <a href="./about.html"><i class="fa-solid fa-circle-info"></i> About</a>
-          <a href="./service.html"><i class="fa-solid fa-layer-group"></i> Service</a>
-          <a href="./blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>
-          <a href="./index.html#plans"><i class="fa-solid fa-tags"></i> Pricing</a>
-          <a href="./index.html#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
-          <a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-        </div>
-      </div>
-
+    <div class="toppled" id="toppled" aria-hidden="true">
+      <div class="toppled__block" data-b="1" style="--c:var(--amber)"><span>Auto</span></div>
+      <div class="toppled__block" data-b="2" style="--c:var(--teal)"><span>Home</span></div>
+      <div class="toppled__block" data-b="3" style="--c:var(--coral)"><span>Health</span></div>
+      <div class="toppled__block" data-b="4" style="--c:var(--ink-2)"><span>Life</span></div>
+      <div class="toppled__ground"></div>
     </div>
-  </section>
+
+    <p class="eyebrow">Error 404</p>
+    <h1>This layer<br>fell off the stack.</h1>
+    <p class="notfound__sub">
+      The page you're looking for doesn't exist, moved, or slipped out from under the pile. Let's get you back to solid ground.
+    </p>
+
+    <div class="notfound__actions">
+      <a href="index.html" class="btn btn--primary">Take me home</a>
+      <button type="button" class="btn btn--ghost" id="goBack">Go back</button>
+    </div>
+
+    <div class="notfound__links">
+      <a href="index.html#layers">Coverage</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact support</a>
+    </div>
+  </div>
 </main>
 
-<script src="404.js"></script>
+<footer class="notfound__footer">
+  <p>© 2026 Stackly Insurance Co. Stackly is a fictional brand created for demonstration purposes.</p>
+</footer>
+
+<script>
+  (function () {
+  "use strict";
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Hand each tumbled block off to a gentle float loop once it lands,
+     locking opacity/transform explicitly so it doesn't fall back to the
+     block's base (invisible) state when the animation is swapped. */
+  if (!prefersReducedMotion) {
+    var blocks = document.querySelectorAll(".toppled__block");
+    var restRotation = { 1: "-18deg", 2: "9deg", 3: "-8deg", 4: "20deg" };
+
+    blocks.forEach(function (block) {
+      block.addEventListener("animationend", function handler() {
+        var id = block.getAttribute("data-b");
+        block.style.opacity = "1";
+        block.style.setProperty("--r", restRotation[id] || "0deg");
+        block.style.transform = "rotate(" + (restRotation[id] || "0deg") + ")";
+        block.classList.add("settle-float");
+        block.removeEventListener("animationend", handler);
+      });
+    });
+  }
+
+  /* "Go back" button: use browser history if there's somewhere to go back
+     to, otherwise fall back to the homepage. */
+  var goBackBtn = document.getElementById("goBack");
+  if (goBackBtn) {
+    goBackBtn.addEventListener("click", function () {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>

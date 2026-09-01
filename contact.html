@@ -10,6 +10,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="pages.css">
+<style>
+
+/* Validation error */
+.field input.error,
+.field select.error,
+.field textarea.error {
+  border: 1px solid #e53935;
+}
+
+.error-message {
+  display: block;
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Success message */
+.contact__status.success {
+  color: #198754;
+}
+
+/* General error message */
+.contact__status.error {
+  color: #e53935;
+}
+
+
+</style>
 </head>
 <body>
 
@@ -86,17 +114,25 @@
       <div class="reveal">
         <p class="eyebrow">Find us</p>
         <h2>Headquartered downtown. Underwriting nationwide.</h2>
-        <div class="contact-map">
-          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" alt="City map view of downtown headquarters area">
-        </div>
+    <div class="contact-map">
+  <iframe
+    src="https://www.google.com/maps?q=Stackly,+MMR+Complex,+Chinna+Thirupathi,+Salem,+Tamil+Nadu+636008&output=embed"
+    width="100%"
+    height="400"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
         <div class="office-list">
           <div class="office-list__item">
             <i class="fa-solid fa-location-dot"></i>
-            <div><h4>Headquarters</h4><p>412 Harbor Street, Suite 900, Portland, OR 97201</p></div>
+            <div><h4>Headquarters</h4><p>Salem, Tamil Nadu</p></div>
           </div>
           <div class="office-list__item">
             <i class="fa-solid fa-location-dot"></i>
-            <div><h4>Claims processing center</h4><p>88 Meridian Way, Austin, TX 78701</p></div>
+            <div><h4>Claims processing center</h4><p>Salem,Tamil Nadu</p></div>
           </div>
           <div class="office-list__item">
             <i class="fa-solid fa-location-dot"></i>
@@ -105,33 +141,46 @@
         </div>
       </div>
 
-      <form class="contact__form reveal" id="contactForm" novalidate>
-        <p class="eyebrow" style="margin-bottom:4px;">Send a message</p>
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email">
-        </div>
-        <div class="field">
-          <label for="topic">What's this about?</label>
-          <select id="topic" name="topic" required>
-            <option value="">Choose a topic</option>
-            <option>New quote</option>
-            <option>Existing policy</option>
-            <option>Claim status</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn--primary"><i class="fa-solid fa-paper-plane"></i> Send message</button>
-        <p class="contact__status" id="contactStatus" role="status" aria-live="polite"></p>
-      </form>
+<form class="contact__form reveal" id="contactForm" novalidate>
+  <p class="eyebrow" style="margin-bottom:4px;">Send a message</p>
+
+  <div class="field">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required autocomplete="name">
+    <small class="error-message"></small>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required autocomplete="email">
+    <small class="error-message"></small>
+  </div>
+
+  <div class="field">
+    <label for="topic">What's this about?</label>
+    <select id="topic" name="topic" required>
+      <option value="">Choose a topic</option>
+      <option value="New quote">New quote</option>
+      <option value="Existing policy">Existing policy</option>
+      <option value="Claim status">Claim status</option>
+      <option value="Something else">Something else</option>
+    </select>
+    <small class="error-message"></small>
+  </div>
+
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    <small class="error-message"></small>
+  </div>
+
+  <button type="submit" class="btn btn--primary">
+    <i class="fa-solid fa-paper-plane"></i> Send message
+  </button>
+
+  <p class="contact__status" id="contactStatus" role="status" aria-live="polite"></p>
+</form>
+
     </div>
   </section>
 
@@ -140,7 +189,7 @@
     <div class="cta__inner reveal">
       <h2>Ready to see your stack?</h2>
       <p>Answer a few questions and get real numbers — not a sales call.</p>
-      <a href="./index.html#quote" class="btn btn--primary btn--lg">Get your free quote</a>
+      <a href="./404.html" class="btn btn--primary btn--lg">Get your free quote</a>
     </div>
   </section>
 
@@ -211,5 +260,95 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+const contactForm = document.getElementById("contactForm");
+const contactStatus = document.getElementById("contactStatus");
+
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Get values
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const topic = document.getElementById("topic");
+  const message = document.getElementById("message");
+
+  let isValid = true;
+
+  // Clear previous errors
+  document.querySelectorAll(".error-message").forEach(error => {
+    error.textContent = "";
+  });
+
+  document.querySelectorAll(".error").forEach(field => {
+    field.classList.remove("error");
+  });
+
+  contactStatus.textContent = "";
+  contactStatus.className = "contact__status";
+
+  // Name validation
+  if (name.value.trim() === "") {
+    showError(name, "Please enter your name.");
+    isValid = false;
+  } else if (name.value.trim().length < 3) {
+    showError(name, "Name must be at least 3 characters.");
+    isValid = false;
+  }
+
+// Email validation
+const emailPattern = /^[^\s@]+@[^\s@]+\.(com|in)$/i;
+
+if (email.value.trim() === "") {
+  showError(email, "Please enter your email address.");
+  isValid = false;
+} else if (!emailPattern.test(email.value.trim())) {
+  showError(email, "Email must end with .com or .in");
+  isValid = false;
+}
+
+  // Topic validation
+  if (topic.value === "") {
+    showError(topic, "Please select a topic.");
+    isValid = false;
+  }
+
+  // Message validation
+  if (message.value.trim() === "") {
+    showError(message, "Please enter your message.");
+    isValid = false;
+  } else if (message.value.trim().length < 10) {
+    showError(message, "Message must be at least 10 characters.");
+    isValid = false;
+  }
+
+  // If validation fails
+  if (!isValid) {
+    contactStatus.textContent = "Please correct the errors above.";
+    contactStatus.classList.add("error");
+    return;
+  }
+
+  // Success
+  contactStatus.textContent = "Message sent successfully!";
+  contactStatus.classList.add("success");
+
+  // Reset form
+  contactForm.reset();
+});
+
+
+// Error function
+function showError(input, message) {
+  input.classList.add("error");
+
+  const errorMessage = input
+    .closest(".field")
+    .querySelector(".error-message");
+
+  errorMessage.textContent = message;
+}
+
+</script>
 </body>
 </html>
