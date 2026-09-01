@@ -95,24 +95,44 @@ p{ margin:0; }
 /* ===========================================================
    Nav
    =========================================================== */
-.nav{
-  position:sticky; top:0; z-index:100;
-  background:rgba(238,241,246,.78);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s var(--ease), padding .3s var(--ease);
-}
-.nav.is-scrolled{ border-bottom-color:var(--line); }
-.nav__inner{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:18px 24px;
-  display:flex; align-items:center; justify-content:space-between;
-  transition:padding .3s var(--ease);
-}
-.nav.is-scrolled .nav__inner{ padding:12px 24px; }
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
 
+  background: rgba(238, 241, 246, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    border-color 0.3s var(--ease),
+    padding 0.3s var(--ease);
+}
+
+
+.nav.is-scrolled {
+  border-bottom-color: var(--line);
+}
+.nav__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition: padding 0.3s var(--ease);
+}
+
+.nav.is-scrolled .nav__inner {
+  padding: 12px 24px;
+}
 .nav__logo{
   display:flex; align-items:center; gap:10px;
   font-family:var(--font-display); font-weight:700; font-size:20px;
