@@ -227,10 +227,25 @@
       <i class="fa-solid fa-envelope-open-text"></i>
       <h2>One email a month. No sales pitch.</h2>
       <p>Coverage explainers, claims-process notes, and the occasional rate-change heads up.</p>
-      <form class="newsletter__form" id="newsletterForm" novalidate>
-        <input type="email" placeholder="you@email.com" required aria-label="Email address">
-        <button type="submit" class="btn btn--primary">Subscribe</button>
-      </form>
+<form class="newsletter__form" id="newsletterForm" novalidate>
+  <input
+    type="email"
+    id="newsletterEmail"
+    name="email"
+    placeholder="you@email.com"
+    required
+    maxlength="100"
+    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)"
+    title="Please enter a valid .com or .in email address"
+    aria-label="Email address"
+    autocomplete="email"
+  >
+
+  <button type="submit" class="btn btn--primary">
+    Subscribe
+  </button>
+</form>
+
       <p class="contact__status" id="newsletterStatus" role="status" aria-live="polite" style="justify-content:center; margin-top:14px; color:var(--amber);"></p>
     </div>
   </section>
