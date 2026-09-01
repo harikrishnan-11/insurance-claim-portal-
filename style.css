@@ -38,6 +38,7 @@
 html{ scroll-behavior:smooth; overflow-x:hidden; }
 body{
   margin:0;
+   padding-top: var(--nav-h, 74px);
   overflow-x:hidden;
   background:var(--paper);
   color:var(--ink);
