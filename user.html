@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Sora:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <title>My Policies — Trustpoint Insurance</title>
+    <style>
+        /* =========================================================
+   TRUSTPOINT POLICYHOLDER PORTAL — shares design tokens with the admin dashboard
+   (insurance brand: ink teal + coral + seafoam)
+========================================================= */
+
+        :root {
+            --primary: #0E2A2B;
+            --primary-dark: #051615;
+            --secondary: #E8703A;
+            --accent: #9FC2A6;
+
+            --white: #ffffff;
+            --text-primary: #12211F;
+            --text-secondary: #5C6C68;
+            --text-light: #98A6A2;
+            --border: #E7E0D2;
+            --bg-body: #F6F2E9;
+            --bg-section: #FBE7DA;
+
+            --shadow-sm: 0 4px 10px rgba(14, 42, 43, 0.06);
+            --shadow-md: 0 12px 30px rgba(14, 42, 43, 0.10);
+            --shadow-lg: 0 25px 60px rgba(14, 42, 43, 0.18);
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-full: 999px;
+
+            --space-xs: 6px;
+            --space-sm: 10px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+
+            --fs-xs: 0.85rem;
+            --fs-sm: 0.95rem;
+            --fs-md: 1.05rem;
+            --fs-lg: 1.5rem;
+            --fs-xl: 2rem;
+
+            --fw-medium: 500;
+            --fw-semibold: 600;
+            --fw-bold: 700;
+            --fw-extrabold: 800;
+
+            --tracking-wide: 0.06em;
+            --lh-body: 1.6;
+
+            --font-primary: 'Fraunces', serif;
+            --font-secondary: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            color: var(--text-primary);
+            line-height: var(--lh-body);
+            -webkit-font-smoothing: antialiased;
+            background: var(--bg-body);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(232, 112, 58, 0.3);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* ========== SHELL ========== */
+        .dash-shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            flex-shrink: 0;
+            background: var(--primary);
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-lg) var(--space-lg) var(--space-xl);
+            z-index: 200;
+            transition: var(--transition);
+        }
+
+        .sidebar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: .6em;
+            font-family: var(--font-primary);
+            font-weight: var(--fw-semibold);
+            font-size: 1.3rem;
+            color: var(--white);
+            width: 180px;
+            height: 60px;
+        }
+        .logo img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--secondary);
+            box-shadow: 0 0 0 5px rgba(232, 112, 58, .22);
+            flex-shrink: 0;
+        }
+
+        .sidebar-close {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: var(--fs-lg);
+            cursor: pointer;
+        }
+
+        .sidebar-user {
+            display: none;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, .06);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .sidebar-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-full);
+            background: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-primary);
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-sm);
+            flex-shrink: 0;
+        }
+
+        .sidebar-user-name {
+            color: var(--white);
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-sm);
+        }
+
+        .sidebar-user-email {
+            color: rgba(255, 255, 255, .55);
+            font-size: .78rem;
+            font-family: var(--font-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow-y: auto;
+        }
+
+        .nav-label {
+            color: rgba(255, 255, 255, .4);
+            font-family: var(--font-secondary);
+            font-size: .72rem;
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wide);
+            margin: var(--space-lg) 0 var(--space-xs) var(--space-sm);
+        }
+
+        .nav-label:first-child {
+            margin-top: 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            color: rgba(255, 255, 255, .82);
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-medium);
+            font-size: var(--fs-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link i {
+            width: 18px;
+            text-align: center;
+            font-size: .95rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--white);
+        }
+
+        .nav-link.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .nav-link .nav-count {
+            margin-left: auto;
+            background: rgba(255, 255, 255, .16);
+            color: var(--white);
+            font-size: .68rem;
+            font-weight: var(--fw-bold);
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+        }
+
+        .nav-link.active .nav-count {
+            background: rgba(255, 255, 255, .28);
+        }
+
+        .nav-link-danger {
+            margin-top: var(--space-lg);
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .nav-link-danger:hover {
+            background: rgba(198, 57, 46, .18);
+            color: #ffb3ab;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(14, 42, 43, .5);
+            z-index: 190;
+        }
+
+        /* ========== MAIN ========== */
+        .dash-main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            padding: var(--space-md) var(--space-xl);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: var(--fs-lg);
+            cursor: pointer;
+        }
+
+        .topbar-search {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            color: var(--primary);
+            font-family: var(--font-primary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-sm);
+        }
+
+        .topbar-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .icon-btn {
+            display: flex;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--primary);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-section);
+        }
+
+        .notif-dot {
+            position: absolute;
+            top: 8px;
+            right: 9px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--secondary);
+        }
+
+        .topbar-user {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            cursor: pointer;
+        }
+
+        .topbar-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-primary);
+            font-weight: var(--fw-bold);
+            font-size: .82rem;
+        }
+
+        .topbar-user-name {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .topbar-user-email {
+            font-family: var(--font-secondary);
+            font-size: .74rem;
+            color: var(--text-light);
+        }
+
+        .topbar-user>i {
+            display: none;
+            color: var(--text-light);
+            font-size: .75rem;
+        }
+
+        /* ========== SECTIONS ========== */
+        .dash-section {
+            display: none;
+            padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+            animation: fadeSlideIn .4s ease;
+        }
+
+        .dash-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-head h1 {
+            font-family: var(--font-primary);
+            font-size: var(--fs-xl);
+            color: var(--primary);
+            font-weight: var(--fw-extrabold);
+        }
+
+        .section-sub {
+            font-family: var(--font-secondary);
+            color: var(--text-secondary);
+            font-size: var(--fs-sm);
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--primary);
+            color: var(--white);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-sm);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--white);
+            color: var(--primary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-sm);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* ========== KPI CARDS ========== */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .kpi-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .kpi-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            transition: var(--transition);
+            animation: fadeSlideIn .5s ease backwards;
+        }
+
+        .kpi-card:nth-child(2) {
+            animation-delay: .05s;
+        }
+
+        .kpi-card:nth-child(3) {
+            animation-delay: .1s;
+        }
+
+        .kpi-card:nth-child(4) {
+            animation-delay: .15s;
+        }
+
+        .kpi-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-section);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .kpi-card h3 {
+            font-family: var(--font-primary);
+            font-size: var(--fs-xl);
+            color: var(--primary);
+            font-weight: var(--fw-extrabold);
+        }
+
+        .kpi-card p {
+            font-family: var(--font-secondary);
+            color: var(--text-secondary);
+            font-size: var(--fs-xs);
+            margin-top: 4px;
+        }
+
+        .kpi-note {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: .72rem;
+            color: var(--text-light);
+        }
+
+        .kpi-note-alert {
+            color: #c23c3c;
+        }
+
+        /* ========== PANEL / TABLE ========== */
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            min-width: 0;
+            height: 100%;
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+
+        .panel-head h2 {
+            font-family: var(--font-primary);
+            font-size: var(--fs-md);
+            color: var(--primary);
+            font-weight: var(--fw-bold);
+        }
+
+        .link-read {
+            font-family: var(--font-secondary);
+            color: var(--primary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .link-read:hover {
+            color: var(--secondary);
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-secondary);
+            font-size: var(--fs-xs);
+            min-width: 560px;
+        }
+
+        thead th {
+            text-align: left;
+            color: var(--text-light);
+            font-weight: var(--fw-semibold);
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: var(--transition);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-body);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-weight: var(--fw-semibold);
+            font-size: .72rem;
+            white-space: nowrap;
+        }
+
+        .status-transit {
+            background: rgba(232, 176, 61, .18);
+            color: #93691a;
+        }
+
+        .status-delivered {
+            background: rgba(159, 194, 166, .3);
+            color: #17513c;
+        }
+
+        .status-pending {
+            background: rgba(198, 57, 46, .1);
+            color: #c23c3c;
+        }
+
+        /* ========== CONTENT GRID ========== */
+        .content-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1.4fr 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+            margin-bottom: var(--space-lg);
+        }
+
+        /* ========== QUICK ACTIONS ========== */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            color: var(--primary);
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            transition: var(--transition);
+        }
+
+        .quick-action:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-3px);
+        }
+
+        .quick-action-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-section);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ========== ACTIVITY FEED ========== */
+        .activity-feed {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .activity-item {
+            display: flex;
+            gap: var(--space-md);
+            align-items: flex-start;
+        }
+
+        .activity-item p {
+            font-family: var(--font-secondary);
+            font-size: var(--fs-xs);
+            color: var(--text-primary);
+            line-height: var(--lh-body);
+        }
+
+        .activity-time {
+            font-size: .72rem;
+            color: var(--text-light);
+            font-family: var(--font-secondary);
+        }
+
+        .activity-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: .8rem;
+        }
+
+        .activity-icon-transit {
+            background: rgba(232, 176, 61, .18);
+            color: #93691a;
+        }
+
+        .activity-icon-delivered {
+            background: rgba(159, 194, 166, .3);
+            color: #17513c;
+        }
+
+        .activity-icon-pending {
+            background: rgba(198, 57, 46, .1);
+            color: #c23c3c;
+        }
+
+        /* ========== OVERVIEW CHARTS ========== */
+        .chart-legend-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: .72rem;
+            color: var(--text-secondary);
+        }
+
+        .dot-swatch {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--c);
+            flex-shrink: 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: var(--space-lg);
+            height: 80%;
+            padding-top: var(--space-lg);
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            gap: var(--space-sm);
+        }
+
+        .bar {
+            width: 100%;
+            max-width: 34px;
+            height: var(--h, 40%);
+            background: var(--bg-section);
+            border-radius: 6px 6px 0 0;
+            transition: var(--transition);
+            animation: growUp .6s ease backwards;
+        }
+
+        .bar-current {
+            background: var(--secondary);
+        }
+
+        .bar-col label {
+            font-family: var(--font-secondary);
+            font-size: .72rem;
+            color: var(--text-light);
+        }
+
+        @keyframes growUp {
+            from {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+
+            to {
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+        }
+
+        .legend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            font-family: var(--font-secondary);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .legend-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .legend-list li strong {
+            margin-left: auto;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--c);
+            flex-shrink: 0;
+        }
+
+        .donut-wrap {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: var(--space-md) 0;
+        }
+
+        .donut-chart {
+            --p1: 60;
+            --p2: 20;
+            --p3: 20;
+            position: relative;
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: conic-gradient(var(--secondary) 0% calc(var(--p1) * 1%),
+                    var(--primary) calc(var(--p1) * 1%) calc((var(--p1) + var(--p2)) * 1%),
+                    var(--accent) calc((var(--p1) + var(--p2)) * 1%) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: donutIn .7s ease backwards;
+        }
+
+        @keyframes donutIn {
+            from {
+                opacity: 0;
+                transform: scale(.85) rotate(-30deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .donut-center {
+            width: 108px;
+            height: 108px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .donut-center strong {
+            font-family: var(--font-primary);
+            font-size: var(--fs-lg);
+            color: var(--primary);
+            font-weight: var(--fw-extrabold);
+        }
+
+        .donut-center span {
+            font-family: var(--font-secondary);
+            font-size: .7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wide);
+        }
+
+        .donut-legend {
+            margin-bottom: 0;
+            min-width: 140px;
+            flex: 1;
+        }
+
+        /* ========== PROGRESS TRACKER (guest-specific) ========== */
+        .tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: var(--space-sm);
+        }
+
+        .tracker-step {
+            display: flex;
+            gap: var(--space-md);
+            position: relative;
+            padding-bottom: var(--space-lg);
+        }
+
+        .tracker-step:last-child {
+            padding-bottom: 0;
+        }
+
+        .tracker-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--bg-section);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .tracker-step.done .tracker-dot {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .tracker-step.active .tracker-dot {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .tracker-step:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 26px;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .tracker-step.done:not(:last-child)::before {
+            background: var(--secondary);
+        }
+
+        .tracker-title {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .tracker-sub {
+            font-family: var(--font-secondary);
+            font-size: .74rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* ========== FILTER TABS ========== */
+        .filter-tabs {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .filter-tab {
+            background: var(--white);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            padding: var(--space-xs) var(--space-lg);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* ========== PAYMENT METHOD CARD ========== */
+        .pay-method {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .pay-method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-section);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pay-method-name {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .pay-method-sub {
+            font-family: var(--font-secondary);
+            font-size: .74rem;
+            color: var(--text-light);
+        }
+
+        .pay-method-default {
+            margin-left: auto;
+            font-size: .68rem;
+            font-weight: var(--fw-bold);
+            color: var(--secondary);
+            background: var(--bg-section);
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ========== DOCUMENT CARDS ========== */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .doc-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            transition: var(--transition);
+        }
+
+        .doc-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .doc-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-section);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .doc-card h3 {
+            font-family: var(--font-primary);
+            font-size: var(--fs-sm);
+            color: var(--primary);
+            font-weight: var(--fw-bold);
+        }
+
+        .doc-card p {
+            font-family: var(--font-secondary);
+            color: var(--text-secondary);
+            font-size: var(--fs-xs);
+            margin: 4px 0 var(--space-md);
+        }
+
+        /* ========== SETTINGS FORM ========== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .settings-form .field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .settings-form label {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .settings-form input {
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-body);
+            font-family: var(--font-secondary);
+            font-size: var(--fs-sm);
+            color: var(--primary);
+            width: 100%;
+        }
+
+        .settings-form input:focus {
+            outline: 2px solid var(--secondary);
+            background: var(--white);
+        }
+
+        .settings-form input:disabled {
+            color: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-title {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .toggle-sub {
+            font-family: var(--font-secondary);
+            font-size: .74rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            top: 3px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .switch input:checked+.slider {
+            background: var(--secondary);
+        }
+
+        .switch input:checked+.slider::before {
+            transform: translateX(18px);
+        }
+
+        /* ========== NEW CLAIM FORM ========== */
+        .request-type-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .request-type {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .request-type:hover {
+            border-color: var(--secondary);
+        }
+
+        .request-type.selected {
+            border-color: var(--secondary);
+            background: var(--bg-section);
+        }
+
+        .request-type i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .request-type span {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xs);
+            color: var(--primary);
+        }
+
+        .settings-form textarea {
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-body);
+            font-family: var(--font-secondary);
+            font-size: var(--fs-sm);
+            color: var(--primary);
+            width: 100%;
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .settings-form textarea:focus {
+            outline: 2px solid var(--secondary);
+            background: var(--white);
+        }
+
+        /* ========== EMPTY STATE ========== */
+        .empty-state {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .empty-state i {
+            font-size: 2rem;
+            color: var(--border);
+            margin-bottom: var(--space-md);
+        }
+
+        .empty-state p {
+            font-family: var(--font-secondary);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* ========================================================= */
+        /* RESPONSIVE */
+        /* ========================================================= */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 232px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .kpi-grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .request-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .donut-wrap {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                width: min(280px, 82vw);
+                transform: translateX(-100%);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-close {
+                display: block;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .topbar-search {
+                display: none;
+            }
+
+            .topbar {
+                gap: var(--space-md);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .kpi-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-md);
+            }
+
+            .kpi-card {
+                padding: var(--space-md);
+            }
+
+            .kpi-card h3 {
+                font-size: var(--fs-lg);
+            }
+
+            .kpi-grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-head .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .topbar {
+                padding: var(--space-md);
+            }
+
+            .dash-section {
+                padding: var(--space-lg) var(--space-md) var(--space-2xl);
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-sm);
+            }
+
+            .quick-action {
+                padding: var(--space-sm) var(--space-md);
+                font-size: .72rem;
+            }
+
+            .quick-action-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .panel {
+                padding: var(--space-md);
+            }
+
+            .panel-head {
+                margin-bottom: var(--space-md);
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .request-type-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-user>i {
+                display: none;
+            }
+
+            .icon-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .bar-chart {
+                height: 160px;
+                gap: var(--space-sm);
+            }
+
+            .donut-wrap {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: var(--space-lg);
+            }
+
+            .donut-chart {
+                width: 140px;
+                height: 140px;
+            }
+
+            .donut-center {
+                width: 92px;
+                height: 92px;
+            }
+
+            .donut-legend {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dash-shell">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+    <a href="index.html" class="logo"><img src="./src/logo/Untitled design.webp" alt=""></a>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">PN</div>
+                <div>
+                    <p class="sidebar-user-name">Priya Nandakumar</p>
+                    <p class="sidebar-user-email">priya@policyholder.trustpoint.insure</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <p class="nav-label">My Policies</p>
+                <a href="#overview" class="nav-link active" data-section="overview">
+                    <i class="fa-solid fa-grip"></i> Overview
+                </a>
+                <a href="#requests" class="nav-link" data-section="requests">
+                    <i class="fa-solid fa-calendar-days"></i> My Claims <span class="nav-count">2</span>
+                </a>
+                <a href="#permits" class="nav-link" data-section="permits">
+                    <i class="fa-solid fa-shield-halved"></i> My Policies &amp; Coverage
+                </a>
+                <a href="#payments" class="nav-link" data-section="payments">
+                    <i class="fa-solid fa-credit-card"></i> Payments &amp; Invoices
+                </a>
+                <a href="#documents" class="nav-link" data-section="documents">
+                    <i class="fa-solid fa-folder-open"></i> Documents &amp; Certificates
+                </a>
+
+                <p class="nav-label">Account</p>
+                <a href="#notifications" class="nav-link" data-section="notifications">
+                    <i class="fa-solid fa-bell"></i> Notifications
+                </a>
+                <a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+                <a href="./login.html" class="nav-link nav-link-danger">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                </a>
+            </nav>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ============ MAIN ============ -->
+        <div class="dash-main">
+
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="topbar-search">
+                    Policyholder Dashboard
+                </div>
+
+                <div class="topbar-actions">
+                   
+                    <div class="topbar-user">
+                        <div class="topbar-avatar"><i class="fa-solid fa-user"></i></div>
+                        <div class="topbar-user-text">
+                            <p class="topbar-user-name">Policyholder</p>
+                            <p class="topbar-user-email"><span id="dashboardEmail"></span></p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ============ OVERVIEW ============ -->
+            <section class="dash-section active" id="overview">
+                <div class="section-head">
+                    <div>
+                        <h1>Welcome back</h1>
+                        <p class="section-sub">Here's what's happening with your policies and account.</p>
+                    </div>
+                    <a href="#requests" class="btn-primary" data-goto="requests">File a Claim <i
+                            class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>2</h3>
+                        <p>Active claims</p>
+                        <span class="kpi-note">1 approved, 1 pending review</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-gem"></i></span>
+                        <h3>3</h3>
+                        <p>Active policies</p>
+                        <span class="kpi-note">Next policy renews in 42 days</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></span>
+                        <h3>$2,400</h3>
+                        <p>Premium due</p>
+                        <span class="kpi-note kpi-note-alert">Due Aug 18, 2026</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-folder-open"></i></span>
+                        <h3>9</h3>
+                        <p>Saved documents</p>
+                        <span class="kpi-note">Last added Jul 28</span>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="#requests" class="quick-action" data-goto="requests">
+                        <span class="quick-action-icon"><i class="fa-solid fa-calendar-plus"></i></span>
+                        File a Claim
+                    </a>
+                    <a href="#payments" class="quick-action" data-goto="payments">
+                        <span class="quick-action-icon"><i class="fa-solid fa-credit-card"></i></span>
+                        Pay Premium
+                    </a>
+                    <a href="#permits" class="quick-action" data-goto="permits">
+                        <span class="quick-action-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                        Renew a Policy
+                    </a>
+                    <a href="#documents" class="quick-action" data-goto="documents">
+                        <span class="quick-action-icon"><i class="fa-solid fa-download"></i></span>
+                        Download a Document
+                    </a>
+                </div>
+
+                <!-- ===== Overview charts row ===== -->
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Premiums paid this year</h2>
+                            <span class="chart-legend-inline"><span class="dot-swatch"
+                                    style="--c:var(--secondary)"></span>Amount paid</span>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar-col"><span class="bar" style="--h:22%"></span><label>Feb</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:12%"></span><label>Mar</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:38%"></span><label>Apr</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:16%"></span><label>May</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:28%"></span><label>Jun</label></div>
+                            <div class="bar-col"><span class="bar bar-current" style="--h:82%"></span><label>Jul</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Your claims by status</h2>
+                        </div>
+                        <div class="donut-wrap">
+                            <div class="donut-chart" style="--p1:50; --p2:25; --p3:25;">
+                                <div class="donut-center">
+                                    <strong>4</strong>
+                                    <span>claims</span>
+                                </div>
+                            </div>
+                            <ul class="legend-list donut-legend">
+                                <li><span class="legend-dot" style="--c:var(--secondary)"></span> Completed
+                                    <strong>50%</strong></li>
+                                <li><span class="legend-dot" style="--c:var(--primary)"></span> Upcoming
+                                    <strong>25%</strong></li>
+                                <li><span class="legend-dot" style="--c:var(--accent)"></span> Pending Review
+                                    <strong>25%</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Auto Claim #CLM-4921 — Windshield Repair</h2>
+                            <span class="status status-transit">Upcoming</span>
+                        </div>
+                        <div class="tracker">
+                            <div class="tracker-step done">
+                                <span class="tracker-dot"><i class="fa-solid fa-check"></i></span>
+                                <div>
+                                    <p class="tracker-title">Claim submitted</p>
+                                    <p class="tracker-sub">Jul 22, 2026</p>
+                                </div>
+                            </div>
+                            <div class="tracker-step done">
+                                <span class="tracker-dot"><i class="fa-solid fa-check"></i></span>
+                                <div>
+                                    <p class="tracker-title">Deductible paid — $2,400</p>
+                                    <p class="tracker-sub">Jul 22, 2026</p>
+                                </div>
+                            </div>
+                            <div class="tracker-step active">
+                                <span class="tracker-dot"><i class="fa-solid fa-broom"></i></span>
+                                <div>
+                                    <p class="tracker-title">Repair in progress — Claims team</p>
+                                    <p class="tracker-sub">Est. completion by: Aug 12, 2026</p>
+                                </div>
+                            </div>
+                            <div class="tracker-step">
+                                <span class="tracker-dot"><i class="fa-solid fa-flag-checkered"></i></span>
+                                <div>
+                                    <p class="tracker-title">Claim closed</p>
+                                    <p class="tracker-sub">Awaiting repair completion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Recent activity</h2>
+                        </div>
+                        <ul class="activity-feed">
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-delivered"><i
+                                        class="fa-solid fa-circle-check"></i></span>
+                                <div>
+                                    <p>Your Term Life claim <strong>#CLM-4918</strong> was settled</p>
+                                    <span class="activity-time">4 hours ago</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-transit"><i
+                                        class="fa-solid fa-calendar-check"></i></span>
+                                <div>
+                                    <p>Your Auto claim moved to <strong>In Review</strong></p>
+                                    <span class="activity-time">Yesterday</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-pending"><i
+                                        class="fa-solid fa-bell"></i></span>
+                                <div>
+                                    <p>Reminder: your Travel Insurance policy renews in <strong>42 days</strong></p>
+                                    <span class="activity-time">2 days ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ MY CLAIMS ============ -->
+            <section class="dash-section" id="requests">
+                <div class="section-head">
+                    <div>
+                        <h1>My Claims</h1>
+                        <p class="section-sub">File a new claim or track ones you've already submitted.</p>
+                    </div>
+                </div>
+
+                <div class="panel" style="margin-bottom: var(--space-xl);">
+                    <div class="panel-head">
+                        <h2>File a new claim</h2>
+                    </div>
+                    <div class="request-type-grid">
+                        <button class="request-type selected">
+                            <i class="fa-solid fa-bed"></i>
+                            <span>Auto Claim</span>
+                        </button>
+                        <button class="request-type">
+                            <i class="fa-solid fa-water"></i>
+                            <span>Home Claim</span>
+                        </button>
+                        <button class="request-type">
+                            <i class="fa-solid fa-house-chimney"></i>
+                            <span>Life Claim</span>
+                        </button>
+                        <button class="request-type">
+                            <i class="fa-solid fa-spa"></i>
+                            <span>Health Claim</span>
+                        </button>
+                        <button class="request-type">
+                            <i class="fa-solid fa-sailboat"></i>
+                            <span>Travel Claim</span>
+                        </button>
+                        <button class="request-type">
+                            <i class="fa-solid fa-ellipsis"></i>
+                            <span>Something else</span>
+                        </button>
+                    </div>
+                    <form class="settings-form" id="requestForm">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="rAddress">Claim title</label>
+                                <input type="text" id="rAddress" placeholder="e.g. Windshield Repair" />
+                            </div>
+                            <div class="field">
+                                <label for="rContact">Best way to reach you</label>
+                                <input type="text" id="rContact" placeholder="Phone or email" />
+                            </div>
+                        </div>
+                        <div class="field" style="margin-bottom: var(--space-lg);">
+                            <label for="rDetails">Details</label>
+                            <textarea id="rDetails"
+                                placeholder="Describe what happened, when it occurred, or anything the claims team should know"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Submit claim <i
+                                class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All</button>
+                    <button class="filter-tab">Upcoming</button>
+                    <button class="filter-tab">Pending Review</button>
+                    <button class="filter-tab">Completed</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Claim history</h2>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Claim ID</th>
+                                    <th>Policy Type</th>
+                                    <th>Filed On</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#CLM-4921</td>
+                                    <td>Comprehensive Auto Policy</td>
+                                    <td>Jul 22, 2026</td>
+                                    <td>$2,560</td>
+                                    <td><span class="status status-transit">Upcoming</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#CLM-4902</td>
+                                    <td>Travel Insurance Policy</td>
+                                    <td>Jul 10, 2026</td>
+                                    <td>$930</td>
+                                    <td><span class="status status-pending">Pending Confirmation</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#CLM-4918</td>
+                                    <td>Term Life Policy</td>
+                                    <td>Jun 30, 2026</td>
+                                    <td>$5,520</td>
+                                    <td><span class="status status-delivered">Completed</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#CLM-4761</td>
+                                    <td>Home Warranty Plan</td>
+                                    <td>May 14, 2026</td>
+                                    <td>$780</td>
+                                    <td><span class="status status-delivered">Completed</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ MY POLICIES & COVERAGE ============ -->
+            <section class="dash-section" id="permits">
+                <div class="section-head">
+                    <div>
+                        <h1>My Policies &amp; Coverage</h1>
+                        <p class="section-sub">Every policy you currently hold, and what's coming up for renewal.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Add New Policy <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid kpi-grid-3">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-gem"></i></span>
+                        <h3>3</h3>
+                        <p>Active policies</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-clock"></i></span>
+                        <h3>1</h3>
+                        <p>Renewing within 60 days</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                        <h3>0</h3>
+                        <p>Expired</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Your policies &amp; coverage</h2>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Policy Name</th>
+                                    <th>Type</th>
+                                    <th>Issued</th>
+                                    <th>Expires</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Comprehensive Auto Policy</td>
+                                    <td>Auto</td>
+                                    <td>Jul 1, 2026</td>
+                                    <td>Jul 1, 2027</td>
+                                    <td><span class="status status-delivered">Active</span></td>
+                                    <td><a href="./404.html" class="link-read">Renew</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Travel Insurance Policy</td>
+                                    <td>Travel</td>
+                                    <td>Sep 14, 2025</td>
+                                    <td>Sep 14, 2026</td>
+                                    <td><span class="status status-transit">Renews in 42 days</span></td>
+                                    <td><a href="./404.html" class="link-read">Renew</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Home Warranty Plan</td>
+                                    <td>Home</td>
+                                    <td>Mar 3, 2026</td>
+                                    <td>Mar 3, 2027</td>
+                                    <td><span class="status status-delivered">Active</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ PREMIUMS & PAYMENTS ============ -->
+            <section class="dash-section" id="payments">
+                <div class="section-head">
+                    <div>
+                        <h1>Premiums &amp; Payments</h1>
+                        <p class="section-sub">Review your premium balance, pay invoices, and manage saved payment methods.</p>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Premium due</h2>
+                            <span class="status status-pending">$2,400.00</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th>Policy</th>
+                                        <th>Amount</th>
+                                        <th>Due date</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Auto Policy Premium</td>
+                                        <td>#CLM-4921</td>
+                                        <td>$2,400.00</td>
+                                        <td>Aug 18, 2026</td>
+                                        <td><a href="./404.html" class="link-read">Pay now</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-head" style="margin-top: var(--space-xl);">
+                            <h2>Payment history</h2>
+                            <a href="./404.html" class="link-read">Download all receipts</a>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Invoice</th>
+                                        <th>Amount</th>
+                                        <th>Method</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Jun 30, 2026</td>
+                                        <td>Life Policy Premium</td>
+                                        <td>$5,520.00</td>
+                                        <td>Visa •••• 4821</td>
+                                        <td><a href="./404.html" class="link-read">Receipt</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feb 12, 2026</td>
+                                        <td>Home Warranty Premium</td>
+                                        <td>$780.00</td>
+                                        <td>Visa •••• 4821</td>
+                                        <td><a href="./404.html" class="link-read">Receipt</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Payment methods</h2>
+                        </div>
+                        <div class="pay-method">
+                            <span class="pay-method-icon"><i class="fa-solid fa-credit-card"></i></span>
+                            <div>
+                                <p class="pay-method-name">Visa •••• 4821</p>
+                                <p class="pay-method-sub">Expires 09/28</p>
+                            </div>
+                            <span class="pay-method-default">Default</span>
+                        </div>
+                        <div class="pay-method">
+                            <span class="pay-method-icon"><i class="fa-solid fa-building-columns"></i></span>
+                            <div>
+                                <p class="pay-method-name">Checking •••• 0192</p>
+                                <p class="pay-method-sub">Linked Jun 2025</p>
+                            </div>
+                        </div>
+                        <button class="btn-ghost"
+                            style="width: 100%; justify-content: center; margin-top: var(--space-sm);">Add payment
+                            method <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ DOCUMENTS & CERTIFICATES ============ -->
+            <section class="dash-section" id="documents">
+                <div class="section-head">
+                    <div>
+                        <h1>Documents &amp; Certificates</h1>
+                        <p class="section-sub">Policy certificates, receipts, and claim documents tied to your account.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Request a Document <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All</button>
+                    <button class="filter-tab">Certificates</button>
+                    <button class="filter-tab">Receipts</button>
+                    <button class="filter-tab">Claim Docs</button>
+                </div>
+
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-file-pdf"></i></span>
+                        <h3>Auto Policy — Policy Certificate</h3>
+                        <p>Active · #CLM-4921</p>
+                        <a href="./404.html" class="link-read">View</a>
+                    </div>
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-file-contract"></i></span>
+                        <h3>Auto Policy Terms &amp; Conditions</h3>
+                        <p>Issued Jul 1, 2026</p>
+                        <a href="./404.html" class="link-read">Download</a>
+                    </div>
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-receipt"></i></span>
+                        <h3>Payment Receipt — $5,520.00</h3>
+                        <p>Jun 30, 2026</p>
+                        <a href="./404.html" class="link-read">Download</a>
+                    </div>
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-file-contract"></i></span>
+                        <h3>Travel Insurance Policy Agreement</h3>
+                        <p>Renews Sep 14, 2026</p>
+                        <a href="./404.html" class="link-read">Download</a>
+                    </div>
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-ticket"></i></span>
+                        <h3>Claim Settlement Letter</h3>
+                        <p>Issued Mar 3, 2026</p>
+                        <a href="./404.html" class="link-read">Download</a>
+                    </div>
+                    <div class="doc-card">
+                        <span class="doc-icon"><i class="fa-solid fa-receipt"></i></span>
+                        <h3>Payment Receipt — $780.00</h3>
+                        <p>Feb 12, 2026</p>
+                        <a href="./404.html" class="link-read">Download</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ NOTIFICATIONS ============ -->
+            <section class="dash-section" id="notifications">
+                <div class="section-head">
+                    <div>
+                        <h1>Notifications</h1>
+                        <p class="section-sub">Updates on your claims, policies, and payments.</p>
+                    </div>
+                    <a href="./404.html" class="link-read">Mark all as read</a>
+                </div>
+
+                <div class="panel">
+                    <ul class="activity-feed">
+                        <li class="activity-item">
+                            <span class="activity-icon activity-icon-delivered"><i
+                                    class="fa-solid fa-circle-check"></i></span>
+                            <div>
+                                <p>Your Term Life claim <strong>#CLM-4918</strong> was settled</p>
+                                <span class="activity-time">4 hours ago</span>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon activity-icon-transit"><i
+                                    class="fa-solid fa-calendar-check"></i></span>
+                            <div>
+                                <p>Your Auto claim moved to <strong>In Review</strong></p>
+                                <span class="activity-time">Yesterday</span>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon activity-icon-pending"><i class="fa-solid fa-bell"></i></span>
+                            <div>
+                                <p>Reminder: your Travel Insurance policy renews in <strong>42 days</strong></p>
+                                <span class="activity-time">2 days ago</span>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon activity-icon-pending"><i
+                                    class="fa-solid fa-sack-dollar"></i></span>
+                            <div>
+                                <p>An invoice of <strong>$2,400.00</strong> is due by Aug 18 for your Auto Insurance policy</p>
+                                <span class="activity-time">2 days ago</span>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon activity-icon-delivered"><i
+                                    class="fa-solid fa-circle-check"></i></span>
+                            <div>
+                                <p>Your Home Warranty claim was marked settled</p>
+                                <span class="activity-time">May 20, 2026</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ============ SETTINGS ============ -->
+            <section class="dash-section" id="settings">
+                <div class="section-head">
+                    <div>
+                        <h1>Settings</h1>
+                        <p class="section-sub">Manage your profile and notification preferences.</p>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Profile</h2>
+                        </div>
+                        <form class="settings-form" id="settingsForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="sName">Full name</label>
+                                    <input type="text" id="sName" value="" />
+                                </div>
+                                <div class="field">
+                                    <label for="sEmail">Email</label>
+                                    <input type="email" id="sEmail" value="" />
+                                </div>
+                                <div class="field">
+                                    <label for="sPhone">Phone</label>
+                                    <input type="tel" id="sPhone" placeholder="Add phone number" />
+                                </div>
+                                <div class="field">
+                                    <label for="sDistrict">Policyholder ID</label>
+                                    <input type="text" id="sDistrict" value="MJ-10432" disabled />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save changes <i
+                                    class="fa-solid fa-check"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Notification preferences</h2>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Claim status updates</p>
+                                <p class="toggle-sub">Email when a claim you filed changes status</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Policy renewal reminders</p>
+                                <p class="toggle-sub">Notify 60, 30, and 7 days before a policy expires</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Payment reminders</p>
+                                <p class="toggle-sub">Notify when an invoice is due within 7 days</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Insurance tips newsletter</p>
+                                <p class="toggle-sub">Monthly tips on coverage, claims, and staying protected</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" /><span class="slider"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const navLinks = document.querySelectorAll('.nav-link[data-section]');
+            const gotoLinks = document.querySelectorAll('[data-goto]');
+            const sections = document.querySelectorAll('.dash-section');
+
+            const openSidebar = () => { sidebar.classList.add('open'); overlay.classList.add('show'); };
+            const closeSidebar = () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); };
+            menuToggle?.addEventListener('click', openSidebar);
+            sidebarClose?.addEventListener('click', closeSidebar);
+            overlay?.addEventListener('click', closeSidebar);
+
+            const showSection = (id) => {
+                sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
+                navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const id = link.dataset.section;
+                    showSection(id);
+                    history.replaceState(null, '', `#${id}`);
+                    closeSidebar();
+                });
+            });
+
+            gotoLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const id = link.dataset.goto;
+                    showSection(id);
+                    history.replaceState(null, '', `#${id}`);
+                    closeSidebar();
+                });
+            });
+
+            const initialId = window.location.hash.replace('#', '');
+            const validIds = Array.from(sections).map(s => s.id);
+            showSection(validIds.includes(initialId) ? initialId : 'overview');
+
+            document.querySelectorAll('.filter-tabs').forEach(group => {
+                group.querySelectorAll('.filter-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        group.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                    });
+                });
+            });
+
+            document.querySelectorAll('.request-type-grid').forEach(group => {
+                group.querySelectorAll('.request-type').forEach(tile => {
+                    tile.addEventListener('click', () => {
+                        group.querySelectorAll('.request-type').forEach(t => t.classList.remove('selected'));
+                        tile.classList.add('selected');
+                    });
+                });
+            });
+
+            const notifBtn = document.getElementById('notifBtn');
+            notifBtn?.addEventListener('click', () => {
+                showSection('notifications');
+            });
+
+            const settingsForm = document.getElementById('settingsForm');
+            settingsForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = settingsForm.querySelector('button[type="submit"]');
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+                window.setTimeout(() => { btn.innerHTML = original; }, 2000);
+            });
+
+            const requestForm = document.getElementById('requestForm');
+            requestForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = requestForm.querySelector('button[type="submit"]');
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Submitted!';
+                window.setTimeout(() => { btn.innerHTML = original; }, 2000);
+            });
+        const dashboardEmail =
+    document.getElementById('dashboardEmail');
+
+const userEmail =
+    localStorage.getItem('stacklyUserEmail');
+
+if (dashboardEmail && userEmail) {
+    dashboardEmail.textContent = userEmail;
+}
+        });
+    </script>
+</body>
+
+</html>
